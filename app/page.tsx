@@ -293,9 +293,7 @@ export default function LandingPage() {
               alt="Thorque Software Logo"
               width={180}
               height={50}
-              className="mb-6 md:mb-0"
-            />
-
+          />
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             {Object.entries(t.nav).map(([key, value]) => (
@@ -374,22 +372,11 @@ export default function LandingPage() {
       <section id="home" className="relative py-32 lg:py-48 overflow-hidden">
         <div className="container relative z-10">
           <div className="max-w-7xl mx-auto text-center">
-            {/* Floating Quote */}
-            <div className="mb-16 relative">
-              <div className="inline-block p-8 rounded-3xl bg-white/90 dark:bg-gray-900/90 backdrop-blur-2xl border border-gray-200/50 dark:border-gray-700/50 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105">
-                <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 italic mb-4 font-light leading-relaxed">
-                  {t.hero.quote}
-                </p>
-                <p className="text-sm text-gray-600 dark:text-gray-400 font-semibold tracking-wide">{t.hero.author}</p>
-              </div>
-              <div className="absolute -top-6 -right-6 animate-bounce">
-                <Sparkles className="h-12 w-12 text-orange-500 opacity-70" />
-              </div>
-            </div>
+            
 
             {/* Main Title */}
             <div className="relative mb-12">
-              <h1 className="text-7xl md:text-9xl lg:text-[12rem] font-black mb-8 leading-none tracking-tight">
+              <h1 className="text-[4.5rem] sm:text-[6rem] md:text-[8rem] lg:text-[12rem] font-black mb-8 leading-none tracking-tight">
                 <span className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-white dark:via-gray-200 dark:to-white bg-clip-text text-transparent">
                   {t.hero.title}
                 </span>
@@ -402,6 +389,19 @@ export default function LandingPage() {
                   className="h-12 w-12 md:h-20 md:w-20 text-red-500 animate-spin"
                   style={{ animationDuration: "8s" }}
                 />
+              </div>
+            </div>
+
+            {/* Floating Quote */}
+            <div className="mb-16 relative">
+              <div className="inline-block p-8 rounded-3xl bg-white/90 dark:bg-gray-900/90 backdrop-blur-2xl border border-gray-200/50 dark:border-gray-700/50 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105">
+                <p className="text-lg sm:text-xl md:text-2xl text-gray-700 dark:text-gray-300 italic mb-4 font-light leading-relaxed">
+                  {t.hero.quote}
+                </p>
+                <p className="text-sm text-gray-600 dark:text-gray-400 font-semibold tracking-wide">{t.hero.author}</p>
+              </div>
+              <div className="absolute -top-6 -right-6 animate-bounce">
+                <Sparkles className="h-12 w-12 text-orange-500 opacity-70" />
               </div>
             </div>
 
@@ -657,7 +657,7 @@ export default function LandingPage() {
 
       {/* Contact Section */}
       <section id="contact" className="py-32 relative">
-        <div className="container relative z-10">
+        <div className="container relative z-10 px-4 sm:px-6">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-24">
               <h2 className="text-6xl md:text-7xl font-black mb-8 bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
@@ -669,7 +669,7 @@ export default function LandingPage() {
               </p>
             </div>
 
-            <div className="grid lg:grid-cols-2 gap-20">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-16 px-2 sm:px-4">
               {/* Contact Form */}
               <Card className="relative overflow-hidden bg-white/90 dark:bg-gray-900/90 backdrop-blur-2xl border-0 shadow-3xl">
                 <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-red-500/5" />
@@ -723,7 +723,7 @@ export default function LandingPage() {
               {/* Contact Info */}
               <div className="space-y-12">
                 {[
-                  { icon: Mail, title: t.contact.info_titles.email, info: t.contact.info.email, gradient: "from-thorque to-thorqueBold" },
+                  { icon: Mail, title: t.contact.info_titles.email, info: t.contact.info.email, gradient: "from-thorque to-thorqueBold" ,customStyle: "break-all overflow-hidden"},
                   {
                     icon: Phone,
                     title: t.contact.info_titles.phone,
@@ -748,7 +748,7 @@ export default function LandingPage() {
                     </div>
                     <div>
                       <h3 className="text-2xl font-black mb-3 text-gray-900 dark:text-white">{contact.title}</h3>
-                      <p className="text-gray-600 dark:text-gray-400 text-xl font-medium">{contact.info}</p>
+                      <p className={`text-gray-600 dark:text-gray-400 text-base sm:text-xl font-medium ${contact.customStyle ?? ""}`}>{contact.info}</p>
                     </div>
                   </div>
                 ))}
@@ -765,7 +765,7 @@ export default function LandingPage() {
                   </div>
                   <div>
                     <h3 className="text-2xl font-black mb-3 text-gray-900 dark:text-white">{t.contact.info.meeting}</h3>
-                    <p className="text-gray-600 dark:text-gray-400 text-xl font-medium">{t.contact.info_titles.meeting}</p>
+                    <p className="text-gray-600 dark:text-gray-400 text-base sm:text-xl font-medium">{t.contact.info_titles.meeting}</p>
                   </div>
                 </a>
               </div>
