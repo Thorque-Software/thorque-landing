@@ -2,251 +2,39 @@
 
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Swiper, SwiperSlide } from "swiper/react"
+import { EffectCoverflow, Autoplay, Pagination } from "swiper/modules"
+import "swiper/css"
+import "swiper/css/effect-coverflow"
+import "swiper/css/pagination"
 import {
   Moon,
   Sun,
   Globe,
   Mail,
-  Phone,
   MapPin,
-  Zap,
   Target,
   Eye,
-  Heart,
-  Database,
-  Smartphone,
-  Server,
-  Brain,
+  Linkedin,
   Menu,
   X,
-  Sparkles,
+  Facebook,
   ArrowRight,
-  Shield,
   Rocket,
   Code,
   Settings,
-  CalendarCheck
+  CalendarCheck,
+  Instagram
 } from "lucide-react"
 import { useTheme } from "next-themes"
 import { Particles } from "@/components/particles"
 import Image from 'next/image';
-
-const translations = {
-  es: {
-    nav: {
-      home: "Inicio",
-      about: "Nosotros",
-      services: "Servicios",
-      contact: "Contacto",
-    },
-    hero: {
-      quote: '"Dame una palanca y moveré el mundo"',
-      author: "- Arquímedes",
-      title: "Thorque Software",
-      subtitle: "Tu punto de apoyo tecnológico hacia el futuro",
-      description:
-        "Desarrollamos soluciones de software inteligentes que potencian la eficiencia operativa mediante IA y automatización.",
-      cta: "Comenzar ahora",
-      learnMore: "Conocer más",
-    },
-    about: {
-      title: "Sobre Nosotros",
-      inspiration:
-        "Inspirados por Arquímedes y su célebre frase, nos posicionamos como ese punto de apoyo tecnológico que ayuda a nuestros clientes a mover sus organizaciones hacia el futuro.",
-      mission: {
-        title: "Misión",
-        content:
-          "Desarrollar soluciones de software inteligentes que potencien la eficiencia operativa de las empresas mediante el análisis de datos y la automatización.",
-      },
-      vision: {
-        title: "Visión",
-        content:
-          "Posicionarse como una empresa líder en automatización y potenciar al máximo la eficiencia operativa de las empresas en la región.",
-      },
-      valueProposition: {
-        title: "Propuesta de Valor",
-        content:
-          "Desarrollamos soluciones de software impulsadas por IA que automatizan procesos críticos, optimizan recursos y reducen significativamente los costos operativos de las empresas.",
-      },
-    },
-    values: {
-      title: "Nuestros Valores",
-      efficiency: {
-        title: "Eficiencia",
-        description: "Optimizamos cada proceso para maximizar resultados",
-      },
-      simplicity: {
-        title: "Simplicidad",
-        description: "Soluciones elegantes para problemas complejos",
-      },
-      innovation: {
-        title: "Innovación",
-        description: "Tecnología de vanguardia en cada proyecto",
-      },
-      adaptability: {
-        title: "Adaptabilidad",
-        description: "Flexibles ante los cambios del mercado",
-      },
-    },
-    services: {
-      title: "Nuestros Servicios",
-      subtitle: "Stack Tecnológico",
-      frontend: {
-        title: "Frontend",
-        description: "Interfaces modernas y responsivas",
-      },
-      backend: {
-        title: "Backend",
-        description: "Arquitecturas robustas y escalables",
-      },
-      ai: {
-        title: "IA y Automatizaciones",
-        description: "Inteligencia artificial aplicada",
-      },
-      infrastructure: {
-        title: "Infraestructura",
-        description: "Despliegue y gestión de servidores",
-      },
-    },
-    contact: {
-      title: "Contacto",
-      subtitle: "Hablemos sobre tu próximo proyecto",
-      description: "Estamos listos para ayudarte a transformar tu empresa con tecnología de vanguardia.",
-      form: {
-        name: "Nombre",
-        email: "Email",
-        message: "Mensaje",
-        send: "Enviar mensaje",
-      },
-      info: {
-        email: "contacto@thorque.com.ar",
-        phone: "+54 9 341 722-9559",
-        address: "Dorrego 737, Rosario, Argentina",
-        meeting: "Agendá una reunión",
-      },
-      send_mesage: "Envíanos un mensaje",
-      info_titles: {
-        email: "Email",
-        phone: "Teléfono",
-        address: "Dirección",
-        meeting: "Gratuita de 30 minutos",
-      }
-    },
-    footer: {
-      rights: "Todos los derechos reservados.",
-      description: "Soluciones de software inteligentes para el futuro.",
-    },
-  },
-  en: {
-    nav: {
-      home: "Home",
-      about: "About",
-      services: "Services",
-      contact: "Contact",
-    },
-    hero: {
-      quote: '"Give me a lever and I will move the world"',
-      author: "- Archimedes",
-      title: "Thorque Software",
-      subtitle: "Your technological leverage point to the future",
-      description:
-        "We develop intelligent software solutions that enhance operational efficiency through AI and automation.",
-      cta: "Get started",
-      learnMore: "Learn more",
-    },
-    about: {
-      title: "About Us",
-      inspiration:
-        "Inspired by Archimedes and his famous phrase, we position ourselves as that technological support point that helps our clients move their organizations towards the future.",
-      mission: {
-        title: "Mission",
-        content:
-          "Develop intelligent software solutions that enhance business operational efficiency through data analysis and automation.",
-      },
-      vision: {
-        title: "Vision",
-        content:
-          "Position ourselves as a leading company in automation and maximize the operational efficiency of companies in the region.",
-      },
-      valueProposition: {
-        title: "Value Proposition",
-        content:
-          "We develop AI-powered software solutions that automate critical processes, optimize resources and significantly reduce operational costs for businesses.",
-      },
-    },
-    values: {
-      title: "Our Values",
-      efficiency: {
-        title: "Efficiency",
-        description: "We optimize every process to maximize results",
-      },
-      simplicity: {
-        title: "Simplicity",
-        description: "Elegant solutions for complex problems",
-      },
-      innovation: {
-        title: "Innovation",
-        description: "Cutting-edge technology in every project",
-      },
-      adaptability: {
-        title: "Adaptability",
-        description: "Flexible to market changes",
-      },
-    },
-    services: {
-      title: "Our Services",
-      subtitle: "Technology Stack",
-      frontend: {
-        title: "Frontend",
-        description: "Modern and responsive interfaces",
-      },
-      backend: {
-        title: "Backend",
-        description: "Robust and scalable architectures",
-      },
-      ai: {
-        title: "AI & Automation",
-        description: "Applied artificial intelligence",
-      },
-      infrastructure: {
-        title: "Infrastructure",
-        description: "Server deployment and management",
-      },
-    },
-    contact: {
-      title: "Contact",
-      subtitle: "Let's talk about your next project",
-      description: "We are ready to help you transform your company with cutting-edge technology.",
-      form: {
-        name: "Name",
-        email: "Email",
-        message: "Message",
-        send: "Send message",
-      },
-      info: {
-        email: "contacto@thorque.com.ar",
-        phone: "+54 9 341 722-9559",
-        address: "Dorrego 737, Rosario, Argentina",
-        meeting: "Schedule a Meeting",
-      },
-      send_mesage: "Send us a message",
-      info_titles: {
-        email: "Email",
-        phone: "Phone",
-        address: "Address",
-        meeting: "Free 30-minute session",
-      }
-    },
-    footer: {
-      rights: "All rights reserved.",
-      description: "Intelligent software solutions for the future.",
-    },
-  },
-}
+import { translations } from "@/components/constants/translations"
+import { projects } from "@/components/constants/projects"
 
 export default function LandingPage() {
+  const [currentIndex, setCurrentIndex] = useState(0)
   const [language, setLanguage] = useState<"es" | "en">("es")
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const { theme, setTheme } = useTheme()
@@ -257,6 +45,36 @@ export default function LandingPage() {
   }, [])
 
   const t = translations[language]
+  const aboutItems = [
+    {
+      icon: Target,
+      title: t.about.mission.title,
+      content: t.about.mission.content,
+      gradient: "from-thorque to-thorqueBold",
+      bgGradient: "from-orange-50 to-red-50 dark:from-orange-950/20 dark:to-red-950/20",
+    },
+    {
+      icon: Eye,
+      title: t.about.vision.title,
+      content: t.about.vision.content,
+      gradient: "from-thorqueBold to-thorque",
+      bgGradient: "from-red-50 to-orange-50 dark:from-red-950/20 dark:to-orange-950/20",
+    },
+    {
+      icon: Rocket,
+      title: t.about.valueProposition.title,
+      content: t.about.valueProposition.content,
+      gradient: "from-thorque to-thorqueBold",
+      bgGradient: "from-orange-50 to-red-50 dark:from-orange-950/20 dark:to-red-950/20",
+    },
+  ]
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % aboutItems.length)
+    }, 5000)
+    return () => clearInterval(interval)
+  }, [])
 
   const toggleLanguage = () => {
     setLanguage(language === "es" ? "en" : "es")
@@ -369,14 +187,32 @@ export default function LandingPage() {
       </header>
 
       {/* Hero Section */}
-      <section id="home" className="relative py-32 lg:py-48 overflow-hidden">
+      <section
+        id="home"
+        className="relative py-32 lg:py-48 overflow-hidden"
+      >
+        {/* 🔹 Video de fondo */}
+       {theme === "dark" && (
+         <video
+           autoPlay
+           muted
+           loop
+           playsInline
+           className="absolute inset-0 w-full h-full object-cover z-0"
+        >
+          <source src="/video.mp4" type="video/mp4" />
+        </video>
+       )}
+
+        {/* 🔹 Overlay para mejorar contraste del texto */}
+        <div className="absolute inset-0 dark:bg-black/40 z-0" />
+
+        {/* 🔹 Contenido */}
         <div className="container relative z-10">
           <div className="max-w-7xl mx-auto text-center">
-            
-
             {/* Main Title */}
             <div className="relative mb-12">
-              <h1 className="text-[4.5rem] sm:text-[6rem] md:text-[8rem] lg:text-[12rem] font-black mb-8 leading-none tracking-tight">
+              <h1 className="text-[4.5rem] sm:text-[5rem] md:text-[6rem] lg:text-[10rem] font-black mb-8 leading-none tracking-tight">
                 <span className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-white dark:via-gray-200 dark:to-white bg-clip-text text-transparent">
                   {t.hero.title}
                 </span>
@@ -392,32 +228,15 @@ export default function LandingPage() {
               </div>
             </div>
 
-            {/* Floating Quote */}
-            <div className="mb-16 relative">
-              <div className="inline-block p-8 rounded-3xl bg-white/90 dark:bg-gray-900/90 backdrop-blur-2xl border border-gray-200/50 dark:border-gray-700/50 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105">
-                <p className="text-lg sm:text-xl md:text-2xl text-gray-700 dark:text-gray-300 italic mb-4 font-light leading-relaxed">
-                  {t.hero.quote}
-                </p>
-                <p className="text-sm text-gray-600 dark:text-gray-400 font-semibold tracking-wide">{t.hero.author}</p>
-              </div>
-              <div className="absolute -top-6 -right-6 animate-bounce">
-                <Sparkles className="h-12 w-12 text-orange-500 opacity-70" />
-              </div>
-            </div>
-
-            <p className="text-3xl md:text-4xl text-gray-700 dark:text-gray-300 mb-8 font-light leading-relaxed">
+            <p className="text-3xl md:text-4xl text-gray-100 dark:text-gray-200 mb-8 font-light leading-relaxed">
               {t.hero.subtitle}
-            </p>
-
-            <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-16 max-w-4xl mx-auto leading-relaxed">
-              {t.hero.description}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-8 justify-center items-center">
               <Button
                 size="lg"
-                onClick={() => window.location.href = "https://chat.thorque.com.ar"}
-                className="relative overflow-hidden group bg-gradient-to-r from-thorque to-thorqueBold  text-white px-12 py-6 text-xl font-bold rounded-2xl shadow-2xl hover:shadow-orange-500/25 transition-all duration-300 hover:scale-110"
+                onClick={() => (window.location.href = "https://chat.thorque.com.ar")}
+                className="relative overflow-hidden group bg-gradient-to-r from-thorque to-thorqueBold text-white px-12 py-6 text-xl font-bold rounded-2xl shadow-2xl hover:shadow-orange-500/25 transition-all duration-300 hover:scale-110"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <span className="relative flex items-center">
@@ -425,22 +244,26 @@ export default function LandingPage() {
                   <ArrowRight className="ml-3 h-6 w-6 transition-transform duration-300 group-hover:translate-x-2" />
                 </span>
               </Button>
+
               <Button
                 size="lg"
-                onClick={() => window.location.href = "#about"}
+                onClick={() => (window.location.href = "#about")}
                 variant="outline"
                 className="relative overflow-hidden group border-2 border-gray-300 dark:border-gray-600 hover:border-orange-500 dark:hover:border-orange-400 px-12 py-6 text-xl font-bold rounded-2xl transition-all duration-300 hover:scale-110 bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-orange-500/10 to-red-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <span className="relative text-gray-900 dark:text-white">{t.hero.learnMore}</span>
+                <span className="relative text-gray-900 dark:text-white">
+                  {t.hero.learnMore}
+                </span>
               </Button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* About Section */}
-      <section id="about" className="py-32 relative">
+
+{/* About Section */}
+      <section id="about" className="py-32 relative overflow-hidden">
         <div className="container relative z-10">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-24">
@@ -452,207 +275,166 @@ export default function LandingPage() {
               </p>
             </div>
 
-            <div className="grid lg:grid-cols-3 gap-12">
-              {[
-                {
-                  icon: Target,
-                  title: t.about.mission.title,
-                  content: t.about.mission.content,
-                  gradient: "from-thorque to-thorqueBold",
-                  bgGradient: "from-orange-50 to-red-50 dark:from-orange-950/20 dark:to-red-950/20",
-                },
-                {
-                  icon: Eye,
-                  title: t.about.vision.title,
-                  content: t.about.vision.content,
-                  gradient: "from-thorqueBold to-thorque",
-                  bgGradient: "from-red-50 to-orange-50 dark:from-red-950/20 dark:to-orange-950/20",
-                },
-                {
-                  icon: Rocket,
-                  title: t.about.valueProposition.title,
-                  content: t.about.valueProposition.content,
-                  gradient: "from-thorque to-thorqueBold",
-                  bgGradient: "from-orange-50 to-red-50 dark:from-orange-950/20 dark:to-red-950/20",
-                },
-              ].map((item, index) => (
-                <Card
-                  key={index}
-                  className={`relative overflow-hidden group hover:shadow-3xl transition-all duration-700 hover:scale-105 bg-gradient-to-br ${item.bgGradient} backdrop-blur-2xl border-0 shadow-2xl`}
-                >
-                  <div
-                    className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-700`}
-                  />
-                  <CardHeader className="relative p-8">
-                    <div
-                      className={`inline-flex p-5 rounded-3xl bg-gradient-to-r ${item.gradient} mb-6 shadow-2xl group-hover:scale-110 transition-transform duration-500`}
-                    >
-                      <item.icon className="h-10 w-10 text-white" />
-                    </div>
-                    <CardTitle className="text-3xl font-black text-gray-900 dark:text-white mb-4">
-                      {item.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="relative p-8 pt-0">
-                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-lg font-medium">
-                      {item.content}
-                    </p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+            {/* Carrusel */}
+            <div className="relative flex items-center justify-center h-[450px]">
+              {aboutItems.map((item, index) => {
+                // calcular posición relativa
+                const position = (index - currentIndex + aboutItems.length) % aboutItems.length
+                let style = ""
 
-      {/* Values Section */}
-      <section className="py-32 relative">
-        <div className="absolute inset-0 bg-gradient-to-r from-gray-100/80 to-gray-50/80 dark:from-gray-900/80 dark:to-gray-800/80" />
-        <div className="container relative z-10">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-24">
-              <h2 className="text-6xl md:text-7xl font-black mb-8 bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
-                {t.values.title}
-              </h2>
-            </div>
+                if (position === 0) {
+                  // Card activa (centro)
+                  style = "z-20 scale-110 opacity-100 translate-x-0"
+                } else if (position === 1) {
+                  // A la derecha
+                  style = "z-10 scale-90 opacity-60 translate-x-72"
+                } else if (position === aboutItems.length - 1) {
+                  // A la izquierda
+                  style = "z-10 scale-90 opacity-60 -translate-x-72"
+                } else {
+                  // Ocultas (para más de 3 items)
+                  style = "opacity-0 scale-75"
+                }
 
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
-              {[
-                {
-                  icon: Zap,
-                  title: t.values.efficiency.title,
-                  description: t.values.efficiency.description,
-                  gradient: "from-thorque to-thorqueBold",
-                },
-                {
-                  icon: Heart,
-                  title: t.values.simplicity.title,
-                  description: t.values.simplicity.description,
-                  gradient: "from-thorqueBold to-thorque",
-                },
-                {
-                  icon: Brain,
-                  title: t.values.innovation.title,
-                  description: t.values.innovation.description,
-                  gradient: "from-thorque to-thorqueBold",
-                },
-                {
-                  icon: Shield,
-                  title: t.values.adaptability.title,
-                  description: t.values.adaptability.description,
-                  gradient: "from-thorqueBold to-thorque",
-                },
-              ].map((value, index) => (
-                <div
-                  key={index}
-                  className="group relative p-10 rounded-3xl bg-white/90 dark:bg-gray-900/90 backdrop-blur-2xl border border-gray-200/50 dark:border-gray-700/50 shadow-2xl hover:shadow-3xl transition-all duration-700 hover:scale-110"
-                >
-                  <div
-                    className={`absolute inset-0 bg-gradient-to-br ${value.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-700 rounded-3xl`}
-                  />
-                  <div className="relative text-center">
+                return (
+                  <Card
+                    key={index}
+                    className={`absolute transition-all duration-700 ease-in-out transform 
+                      ${style} bg-gradient-to-br ${item.bgGradient} 
+                      backdrop-blur-2xl border-0 shadow-2xl w-[350px] max-w-xl`}
+                  >
                     <div
-                      className={`inline-flex p-5 rounded-3xl bg-gradient-to-r ${value.gradient} mb-8 shadow-2xl group-hover:scale-125 transition-transform duration-500`}
-                    >
-                      <value.icon className="h-10 w-10 text-white" />
-                    </div>
-                    <h3 className="text-2xl font-black mb-6 text-gray-900 dark:text-white">{value.title}</h3>
-                    <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-lg font-medium">
-                      {value.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
+                      className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-700`}
+                    />
+                    <CardHeader className="relative p-8 text-center">
+                      <div
+                        className={`inline-flex p-5 rounded-3xl bg-gradient-to-r ${item.gradient} mb-6 shadow-2xl`}
+                      >
+                        <item.icon className="h-10 w-10 text-white" />
+                      </div>
+                      <CardTitle className="text-3xl font-black text-gray-900 dark:text-white mb-4">
+                        {item.title}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="relative p-8 pt-0">
+                      <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-lg font-medium">
+                        {item.content}
+                      </p>
+                    </CardContent>
+                  </Card>
+                )
+              })}
             </div>
           </div>
         </div>
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-32 relative">
-        <div className="container relative z-10">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-24">
-              <h2 className="text-6xl md:text-7xl font-black mb-8 bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
-                {t.services.title}
-              </h2>
-              <p className="text-3xl text-gray-600 dark:text-gray-400 font-light">{t.services.subtitle}</p>
+      <section id="services">
+        <div className="py-32 relative">
+          <h2 className="text-5xl md:text-6xl font-black text-center mb-16 bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
+            {t.services.title}
+          </h2>
+          <div className="container mx-auto grid lg:grid-cols-2 gap-16 items-center">
+
+            <div className="relative w-full h-[400px]">
+              <Image
+                src="/thorque_claro.png" // cambia por tu imagen
+                alt="Demo Thorque Software"
+                fill
+                className="object-contain drop-shadow-2xl"
+              />
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
-              {[
-                {
-                  icon: Smartphone,
-                  title: t.services.frontend.title,
-                  description: t.services.frontend.description,
-                  techs: ["React", "React Native"],
-                  gradient: "from-thorque to-thorqueBold",
-                  bgGradient: "from-orange-50 to-red-50 dark:from-orange-950/20 dark:to-red-950/20",
-                },
-                {
-                  icon: Server,
-                  title: t.services.backend.title,
-                  description: t.services.backend.description,
-                  techs: ["Node.js", "Golang"],
-                  gradient: "from-thorqueBold to-thorque",
-                  bgGradient: "from-red-50 to-orange-50 dark:from-red-950/20 dark:to-orange-950/20",
-                },
-                {
-                  icon: Brain,
-                  title: t.services.ai.title,
-                  description: t.services.ai.description,
-                  techs: ["Python"],
-                  gradient: "from-thorque to-thorqueBold",
-                  bgGradient: "from-orange-50 to-red-50 dark:from-orange-950/20 dark:to-red-950/20",
-                },
-                {
-                  icon: Database,
-                  title: t.services.infrastructure.title,
-                  description: t.services.infrastructure.description,
-                  techs: ["Docker", "PostgreSQL"],
-                  gradient: "from-thorqueBold to-thorque",
-                  bgGradient: "from-red-50 to-orange-50 dark:from-red-950/20 dark:to-orange-950/20",
-                },
-              ].map((service, index) => (
-                <Card
-                  key={index}
-                  className={`group relative overflow-hidden hover:shadow-3xl transition-all duration-700 hover:scale-110 bg-gradient-to-br ${service.bgGradient} backdrop-blur-2xl border-0 shadow-2xl`}
-                >
-                  <div
-                    className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-700`}
-                  />
-                  <CardHeader className="relative text-center p-8">
-                    <div
-                      className={`inline-flex p-5 rounded-3xl bg-gradient-to-r ${service.gradient} mb-6 shadow-2xl group-hover:scale-125 transition-transform duration-500`}
-                    >
-                      <service.icon className="h-10 w-10 text-white" />
-                    </div>
-                    <CardTitle className="text-2xl font-black text-gray-900 dark:text-white mb-4">
-                      {service.title}
-                    </CardTitle>
-                    <CardDescription className="text-gray-600 dark:text-gray-400 text-lg font-medium">
-                      {service.description}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="relative text-center p-8 pt-0">
-                    <div className="flex flex-wrap gap-3 justify-center">
-                      {service.techs.map((tech) => (
-                        <Badge
-                          key={tech}
-                          variant="secondary"
-                          className="bg-white/80 dark:bg-gray-800/80 text-gray-700 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-700 transition-colors duration-300 px-4 py-2 text-sm font-semibold"
-                        >
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+            <div className="space-y-6">
+              <h3 className="text-4xl md:text-5xl font-black bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
+                {t.services.service1.title}
+              </h3>
+              <p className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed">
+                {t.services.service1.description}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="py-8 mb-16 relative">
+          <div className="container mx-auto grid lg:grid-cols-2 gap-16 items-center">
+
+            <div className="space-y-6">
+              <h3 className="text-4xl md:text-5xl font-black bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
+                {t.services.service2.title}
+              </h3>
+              <p className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed">
+                {t.services.service2.description}
+              </p>
+            </div>
+
+            <div className="relative w-full h-[400px]">
+              <Image
+                src="/thorque_claro.png" // cambia por tu imagen
+                alt="Demo Thorque Software"
+                fill
+                className="object-contain drop-shadow-2xl"
+              />
             </div>
           </div>
         </div>
       </section>
+
+      {/* Clients Section */}
+      <section id="clients" className="py-32 relative bg-gradient-to-r from-gray-100/80 to-gray-50/80 dark:from-gray-900/80 dark:to-gray-800/80">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-5xl font-black text-center mb-16 bg-gradient-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 bg-clip-text text-transparent">
+            Nuestros Clientes
+          </h2>
+
+          <Swiper
+            effect="coverflow"
+            grabCursor={true}
+            centeredSlides={true}
+            loop={true}
+            slidesPerView={"auto"}
+            autoplay={{ delay: 4000, disableOnInteraction: false }}
+            coverflowEffect={{
+              rotate: 30,
+              stretch: 0,
+              depth: 150,
+              modifier: 1,
+              slideShadows: true,
+            }}
+            pagination={{ clickable: true }}
+            modules={[EffectCoverflow, Autoplay, Pagination]}
+            className="w-full max-w-6xl"
+          >
+            {projects.map((project, index) => (
+              <SwiperSlide
+                key={index}
+                className="w-[300px] sm:w-[400px] md:w-[500px] rounded-2xl overflow-hidden shadow-2xl relative"
+              >
+                {/* Imagen de fondo */}
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  width={750}
+                  height={450}
+                  className="object-cover"
+                />
+                {/* Overlay oscuro */}
+                <div className="absolute inset-0 bg-black/50 flex flex-col justify-center items-center text-center p-6">
+                  <h3 className="text-2xl md:text-3xl font-bold text-white drop-shadow-lg mb-4">
+                    {language === "es" ? project.title : project.title_en}
+                  </h3>
+                  <p className="text-white/90 text-base md:text-lg leading-relaxed">
+                    {language === "es" ? project.description : project.description_en}
+                  </p>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      </section>
+
+
 
 
       {/* Contact Section */}
@@ -722,19 +504,35 @@ export default function LandingPage() {
 
               {/* Contact Info */}
               <div className="space-y-12">
+                <a
+                  href={t.contact.info.phone_link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-start space-x-8 p-8 rounded-3xl bg-white/80 dark:bg-gray-900/80 backdrop-blur-2xl border border-gray-200/50 dark:border-gray-700/50 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 no-underline block"
+                >
+                  <div
+                    className={`flex-shrink-0 p-5 rounded-3xl bg-gradient-to-r from-thorqueBold to-thorque shadow-2xl group-hover:scale-125 transition-transform duration-500`}
+                  >
+                    <Image
+                      src="/whatsapp.svg"
+                      alt="WhatsApp"
+                      width={8}
+                      height={8}
+                      className="w-8 h-8 invert"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-black mb-3 text-gray-900 dark:text-white">{t.contact.info_titles.phone}</h3>
+                    <p className="text-gray-600 dark:text-gray-400 text-base sm:text-xl font-medium">{t.contact.info.phone}</p>
+                  </div>
+                </a>
                 {[
                   { icon: Mail, title: t.contact.info_titles.email, info: t.contact.info.email, gradient: "from-thorque to-thorqueBold" ,customStyle: "break-all overflow-hidden"},
-                  {
-                    icon: Phone,
-                    title: t.contact.info_titles.phone,
-                    info: t.contact.info.phone,
-                    gradient: "from-thorqueBold to-thorque",
-                  },
                   {
                     icon: MapPin,
                     title: t.contact.info_titles.address,
                     info: t.contact.info.address,
-                    gradient: "from-thorque to-thorqueBold",
+                    gradient: "from-thorqueBold to-thorque",
                   },
                 ].map((contact, index) => (
                   <div
@@ -759,7 +557,7 @@ export default function LandingPage() {
                   className="group flex items-start space-x-8 p-8 rounded-3xl bg-white/80 dark:bg-gray-900/80 backdrop-blur-2xl border border-gray-200/50 dark:border-gray-700/50 shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 no-underline block"
                 >
                   <div
-                    className={`flex-shrink-0 p-5 rounded-3xl bg-gradient-to-r from-thorqueBold to-thorque shadow-2xl group-hover:scale-125 transition-transform duration-500`}
+                    className={`flex-shrink-0 p-5 rounded-3xl bg-gradient-to-r from-thorque to-thorqueBold shadow-2xl group-hover:scale-125 transition-transform duration-500`}
                   >
                     <CalendarCheck className="h-8 w-8 text-white" />
                   </div>
@@ -776,9 +574,10 @@ export default function LandingPage() {
 
       {/* Footer */}
       <footer className="relative py-20 bg-gradient-to-r from-gray-900 via-black to-gray-900 dark:from-gray-950 dark:via-black dark:to-gray-950">
-        <div className="absolute inset-0 bg-gradient-to-r from-orange-900/10 to-red-900/10" />
-        <div className="container relative z-10">
-          <div className="flex flex-col md:flex-row justify-between items-center">
+      <div className="absolute inset-0 bg-gradient-to-r from-orange-900/10 to-red-900/10" />
+      <div className="container relative z-10">
+        <div className="flex flex-col md:flex-row justify-between items-center">
+          <div className="flex flex-col items-center">
             <Image
               src="/thorque_claro.png"
               alt="Thorque Software Logo"
@@ -786,16 +585,61 @@ export default function LandingPage() {
               height={50}
               className="mb-6 md:mb-0"
             />
-            <div className="text-center md:text-right">
-              <p className="text-gray-300 mb-3 text-xl font-medium">{t.footer.description}</p>
-              <p className="text-gray-500 text-sm font-medium">© 2025 Thorque Software. {t.footer.rights}</p>
-              <a className="text-gray-400 hover:text-gray-300 transition-colors duration-300 text-sm font-medium" href="https://www.linkedin.com/company/thorque-software" target="_blank" rel="noopener noreferrer">
-                LinkedIn
+
+            {/* Redes sociales debajo del logo */}
+            <div className="flex gap-4 mt-2">
+              <a
+                href="https://www.linkedin.com/company/thorque-software"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-2xl bg-gray-800 hover:bg-gray-700 transition-colors"
+              >
+                <Linkedin className="w-6 h-6 text-white" />
+              </a>
+              <a
+                href="https://www.instagram.com/thorque_software/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-2xl bg-gray-800 hover:bg-gray-700 transition-colors"
+              >
+                <Instagram className="w-6 h-6 text-white" />
+              </a>
+              <a
+                href="https://www.facebook.com/profile.php?id=61579726687034"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-2xl bg-gray-800 hover:bg-gray-700 transition-colors"
+              >
+                <Facebook className="w-6 h-6 text-white" />
+              </a>
+              <a
+                href={t.contact.info.phone_link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-2xl bg-gray-800 hover:bg-gray-700 transition-colors"
+              >
+                <Image
+                  src="/whatsapp.svg"
+                  alt="WhatsApp"
+                  width={6}
+                  height={6}
+                  className="w-6 h-6 invert"
+                />
               </a>
             </div>
           </div>
+
+          <div className="text-center md:text-right mt-6 md:mt-0">
+            <p className="text-gray-300 mb-3 text-xl font-medium">
+              {t.footer.description}
+            </p>
+            <p className="text-gray-500 text-sm font-medium">
+              © 2025 Thorque Software. {t.footer.rights}
+            </p>
+          </div>
         </div>
-      </footer>
+      </div>
+    </footer>
     </div>
   )
 }
