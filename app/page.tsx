@@ -181,7 +181,7 @@ export default function LandingPage() {
         <div className="container relative z-10">
           <div className="max-w-7xl mx-auto text-center">
             <div className="relative mb-12">
-              <h1 className="text-[4.5rem] sm:text-[5rem] md:text-[6rem] lg:text-[10rem] font-black mb-8 leading-none tracking-tight">
+              <h1 className="text-[3.5rem] sm:text-[5rem] md:text-[6rem] lg:text-[10rem] font-black mb-8 leading-none tracking-tight">
                 <span className="bg-gradient-to-r from-white via-gray-200 to-white bg-clip-text text-transparent">
                   {t.hero.title}
                 </span>
@@ -197,7 +197,7 @@ export default function LandingPage() {
               </div>
             </div>
 
-            <p className="text-3xl md:text-4xl text-gray-200 mb-8 font-light leading-relaxed">
+            <p className="text-2xl md:text-3xl text-gray-200 mb-8  leading-relaxed drop-shadow-lg">
               {t.hero.subtitle}
             </p>
 
@@ -342,21 +342,37 @@ export default function LandingPage() {
             grabCursor={true}
             centeredSlides={true}
             loop={true}
-            slidesPerView={"auto"}
+            slidesPerView={1} // 👈 mejor usar 1 para móviles
+            spaceBetween={30}
+            breakpoints={{
+              640: { slidesPerView: 1, spaceBetween: 20 },
+              768: { slidesPerView: 2, spaceBetween: 30 },
+              1024: { slidesPerView: 3, spaceBetween: 40 },
+            }}
             autoplay={{ delay: 4000, disableOnInteraction: false }}
             coverflowEffect={{ rotate: 30, stretch: 0, depth: 150, modifier: 1, slideShadows: true }}
             pagination={{ clickable: true }}
             modules={[EffectCoverflow, Autoplay, Pagination]}
-            className="w-full max-w-6xl"
+            className="w-full max-w-7xl"
           >
             {projects.map((project, index) => (
-              <SwiperSlide key={index} className="w-[300px] sm:w-[400px] md:w-[500px] rounded-2xl overflow-hidden shadow-2xl relative">
-                <Image src={project.image} alt={project.title} width={750} height={450} className="object-cover" />
-                <div className="absolute inset-0 bg-black/50 flex flex-col justify-center items-center text-center p-6">
-                  <h3 className="text-2xl md:text-3xl font-bold text-white drop-shadow-lg mb-4">
+              <SwiperSlide
+                key={index}
+                className="rounded-2xl overflow-hidden shadow-2xl relative flex flex-col"
+              >
+                <div className="relative w-full h-64 sm:h-80 md:h-96">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="bg-black/50 p-6 flex-1 flex flex-col justify-center text-center">
+                  <h3 className="text-2xl md:text-3xl font-bold text-white drop-shadow-lg mb-4 break-words">
                     {language === "es" ? project.title : project.title_en}
                   </h3>
-                  <p className="text-white/90 text-base md:text-lg leading-relaxed">
+                  <p className="text-white/90 text-sm sm:text-base md:text-lg leading-relaxed break-words overflow-auto max-h-48">
                     {language === "es" ? project.description : project.description_en}
                   </p>
                 </div>
