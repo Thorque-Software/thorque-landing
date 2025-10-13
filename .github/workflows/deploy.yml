@@ -3,7 +3,7 @@ name: Build and Deploy to Server
 on:
   push:
     branches: [ main, no-light-theme ]
-  pull_requests:
+  pull_request:
     branches: [ main ]
 
 env:
