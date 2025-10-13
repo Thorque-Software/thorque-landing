@@ -48,6 +48,6 @@ jobs:
             tar -xzf build.tar.gz --strip-components=1 && \
             rm -f build.tar.gz"
 
-    env:  # Este env va al nivel del job, no del step
-        SERVER_HOST: ${{ vars.USER }}@${{ vars.HOST }}
-        DEPLOY_PATH: ${{ vars.DEPLOY_PATH }}
+    env:
+        SERVER_HOST: ${{ secrets.USER }}@${{ secrets.HOST }}
+        DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
