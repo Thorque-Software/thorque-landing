@@ -29,6 +29,9 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Create deployment package
+        run: tar -czf build.tar.gz out/
+
       - name: Setup SSH private key and passphrase
         env:
           SSH_PASSPHRASE: ${{ secrets.SSH_PASSPHRASE }}
@@ -37,16 +40,6 @@ jobs:
           ssh-agent -a $SSH_AUTH_SOCK > /dev/null
           echo 'echo $SSH_PASSPHRASE' > ~/.ssh_askpass && chmod +x ~/.ssh_askpass
           echo "$SSH_PRIVATE_KEY" | tr -d '\r' | DISPLAY=None SSH_ASKPASS=~/.ssh_askpass ssh-add - >/dev/null
-
-      - name: Setup SSH private key
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        run: |  # Este run debe estar indentado correctamente
-          ssh-agent -a $SSH_AUTH_SOCK > /dev/null
-          echo "$SSH_PRIVATE_KEY" | ssh-add - >/dev/null
-
-      - name: Create deployment package
-        run: tar -czf build.tar.gz out/
 
       - name: Copy files and deploy
         run: |
