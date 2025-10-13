@@ -1,0 +1,46 @@
+name: Build and Deploy to Server
+
+on:
+  push:
+    branches: [ main, no-light-theme ]
+  pull_requests:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Setup SSH private key
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          run: |
+            ssh-agent -a $SSH_AUTH_SOCK > /dev/null
+            echo "$SSH_PRIVATE_KEY" | ssh-add - >/dev/null
+
+      - name: Create deployment package
+        run: tar -czf build.tar.gz out/
+
+      - name: Copy files
+        run: |
+          ssh -o StrictHostKeyChecking=no $SERVER_HOST "rm -rf $DEPLOY_PATH/*"
+
+          scp -o StrictHostKeyChecking=no build.tar.gz $SERVER_HOST:$DEPLOY_PATH
+
+      env:
+          SERVER_HOST: ${{ secrets.USER }}@${{ secrets.HOST }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
