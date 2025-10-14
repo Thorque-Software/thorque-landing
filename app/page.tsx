@@ -35,6 +35,7 @@ export default function LandingPage() {
   const [language, setLanguage] = useState<"es" | "en">("es")
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
     setMounted(true)
@@ -71,6 +72,13 @@ export default function LandingPage() {
     }, 5000)
     return () => clearInterval(interval)
   }, [])
+
+  useEffect(() => {
+    const checkSize = () => setIsMobile(window.innerWidth < 768);
+    checkSize();
+    window.addEventListener("resize", checkSize);
+    return () => window.removeEventListener("resize", checkSize);
+  }, []);
 
   const toggleLanguage = () => {
     setLanguage(language === "es" ? "en" : "es")
@@ -230,7 +238,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-            {/* About Section */}
+      {/* About Section */}
       <section id="about" className="py-32 relative overflow-hidden">
         <div className="container relative z-10">
           <div className="max-w-7xl mx-auto">
@@ -259,7 +267,7 @@ export default function LandingPage() {
                     key={index}
                     className={`absolute transition-all duration-700 ease-in-out transform 
                       ${style} bg-gradient-to-br ${item.bgGradient} 
-                      backdrop-blur-2xl border-0 shadow-2xl w-[350px] max-w-xl`}
+                      backdrop-blur-2xl border-0 shadow-2xl w-[300px] sm:w-[350px] max-w-xl`}
                   >
                     <div className={`absolute inset-0 bg-gradient-to-br ${item.gradient} opacity-0 group-hover:opacity-5 transition-opacity duration-700`} />
                     <CardHeader className="relative p-8 text-center">
@@ -332,55 +340,108 @@ export default function LandingPage() {
       </section>
 
       {/* Clients Section */}
-      <section id="clients" className="py-32 relative bg-gradient-to-r from-gray-900/80 to-gray-800/80">
-        <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-5xl font-black text-center mb-16 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-            Nuestros Clientes
-          </h2>
+      <section
+      id="clients"
+      className="py-32 relative bg-gradient-to-r from-gray-900/80 to-gray-800/80"
+    >
+      <div className="max-w-7xl mx-auto px-6">
+        <h2 className="text-5xl font-black text-center mb-16 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+          Nuestros Clientes
+        </h2>
+
+        {isMobile ? (
+          // 📱 MOBILE: coverflow simple, 1 slide por vez
           <Swiper
             effect="coverflow"
-            grabCursor={true}
-            centeredSlides={true}
-            loop={true}
-            slidesPerView={1} // 👈 mejor usar 1 para móviles
-            spaceBetween={30}
-            breakpoints={{
-              640: { slidesPerView: 1, spaceBetween: 20 },
-              768: { slidesPerView: 2, spaceBetween: 30 },
-              1024: { slidesPerView: 3, spaceBetween: 40 },
-            }}
+            grabCursor
+            centeredSlides
+            loop
+            slidesPerView={1}
             autoplay={{ delay: 4000, disableOnInteraction: false }}
-            coverflowEffect={{ rotate: 30, stretch: 0, depth: 150, modifier: 1, slideShadows: true }}
+            coverflowEffect={{
+              rotate: 25,
+              stretch: 0,
+              depth: 150,
+              modifier: 1,
+              slideShadows: true,
+            }}
             pagination={{ clickable: true }}
             modules={[EffectCoverflow, Autoplay, Pagination]}
             className="w-full max-w-7xl"
           >
-            {projects.map((project, index) => (
+            {projects.map((project: any, index: number) => (
               <SwiperSlide
                 key={index}
-                className="rounded-2xl overflow-hidden shadow-2xl relative flex flex-col"
+                className="rounded-2xl overflow-hidden shadow-2xl flex flex-col"
               >
-                <div className="relative w-full h-64 sm:h-80 md:h-96">
-                  <Image
+                <div className="relative w-full h-64 sm:h-80">
+                  <img
                     src={project.image}
                     alt={project.title}
-                    fill
-                    className="object-cover"
+                    className="object-cover w-full h-full"
                   />
                 </div>
                 <div className="bg-black/50 p-6 flex-1 flex flex-col justify-center text-center">
-                  <h3 className="text-2xl md:text-3xl font-bold text-white drop-shadow-lg mb-4 break-words">
+                  <h3 className="text-2xl font-bold text-white mb-4 break-words">
                     {language === "es" ? project.title : project.title_en}
                   </h3>
-                  <p className="text-white/90 text-sm sm:text-base md:text-lg leading-relaxed break-words overflow-auto max-h-48">
-                    {language === "es" ? project.description : project.description_en}
+                  <p className="text-white/90 text-sm leading-relaxed break-words overflow-auto max-h-48">
+                    {language === "es"
+                      ? project.description
+                      : project.description_en}
                   </p>
                 </div>
               </SwiperSlide>
             ))}
           </Swiper>
-        </div>
-      </section>
+        ) : (
+          // 🖥 DESKTOP: más ancho, simétrico con coverflow
+          <Swiper
+            effect="coverflow"
+            grabCursor
+            centeredSlides
+            loop
+            slidesPerView="auto"
+            autoplay={{ delay: 4000, disableOnInteraction: false }}
+            coverflowEffect={{
+              rotate: 15,
+              stretch: 0,
+              depth: 250,
+              modifier: 1,
+              slideShadows: true,
+            }}
+            pagination={{ clickable: true }}
+            modules={[EffectCoverflow, Autoplay, Pagination]}
+            className="w-full max-w-7xl"
+          >
+            {projects.map((project: any, index: number) => (
+              <SwiperSlide
+                key={index}
+                className="!w-[600px] lg:!w-[800px] rounded-2xl overflow-hidden shadow-2xl flex flex-col"
+              >
+                <div className="relative w-full h-96">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="object-cover w-full h-full"
+                  />
+                </div>
+                <div className="bg-black/50 p-6 flex-1 flex flex-col justify-center text-center">
+                  <h3 className="text-3xl font-bold text-white mb-4 break-words">
+                    {language === "es" ? project.title : project.title_en}
+                  </h3>
+                  <p className="text-white/90 text-base md:text-lg leading-relaxed break-words overflow-auto max-h-48">
+                    {language === "es"
+                      ? project.description
+                      : project.description_en}
+                  </p>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        )}
+      </div>
+    </section>
 
       {/* Contact Section */}
       <section id="contact" className="py-32 relative">
