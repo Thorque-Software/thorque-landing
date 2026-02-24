@@ -1,74 +1,89 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { Inter } from "next/font/google"
-import "./globals.css"
-import Head from "next/head"
-import { ThemeProvider } from "@/components/theme-provider"
-import FBPixel from "@/components/constants/FBpixel"
+import type { Metadata, Viewport } from 'next'
+import { Inter, Geist_Mono } from 'next/font/google'
+import { Analytics } from '@vercel/analytics/next'
+import { ThemeProvider } from '@/components/theme-provider'
+import { LanguageProvider } from '@/components/language-provider'
+import './globals.css'
 
-const inter = Inter({ subsets: ["latin"] })
+const _inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+})
+
+const _geistMono = Geist_Mono({
+  subsets: ['latin'],
+  variable: '--font-geist-mono',
+})
 
 export const metadata: Metadata = {
-  title: "Thorque Software - IA y Automatizaciones",   
+  title: 'Thorque Software | Infraestructura Digital para Empresas',
   description:
-    "Impulsá tu negocio con soluciones de software a medida, inteligencia artificial y automatización de procesos. Hacemos que la tecnología trabaje para vos.",
+    'Automatizamos procesos, integramos sistemas y desarrollamos software a medida para empresas que necesitan escalar su operación digital.',
   keywords: [
-    "software a medida",
-    "automatización",
-    "inteligencia artificial",
-    "desarrollo web",
-    "Thorque Software",
-    "IA para empresas",
-    "bots empresariales",
+    'desarrollo de software',
+    'automatización empresarial',
+    'integraciones CRM',
+    'bots para empresas',
+    'soluciones tecnológicas',
+    'integraciones API',
+    'software a medida',
+    'inteligencia artificial empresarial',
   ],
-  metadataBase: new URL("https://www.thorque.com.ar"),
   openGraph: {
-    title: "Thorque Software - IA y Automatizaciones",
+    title: 'Thorque Software | Infraestructura Digital para Empresas',
     description:
-      "Soluciones inteligentes que optimizan tus procesos con IA y automatización. Transformá tu negocio hoy.",
-    url: "https://www.thorque.com.ar",
-    siteName: "Thorque Software",
-    images: [
-      {
-        url: "/og-image.jpg", 
-        width: 1200,
-        height: 630,
-        alt: "Thorque Software - IA y Automatizaciones",
-      },
-    ],
-    locale: "es_AR",
-    type: "website",
+      'Automatizamos procesos, integramos sistemas y desarrollamos software a medida para empresas.',
+    url: 'https://thorque.com.ar',
+    siteName: 'Thorque Software',
+    locale: 'es_AR',
+    type: 'website',
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Thorque Software - IA y Automatizaciones",
+    card: 'summary_large_image',
+    title: 'Thorque Software | Infraestructura Digital',
     description:
-      "Potenciá tu empresa con automatización e inteligencia artificial a medida.",
-    images: ["/og-image.jpg"], // podés usar el mismo que en OG
+      'Automatizamos la infraestructura digital de empresas.',
   },
-  alternates: {
-    canonical: "https://www.thorque.com.ar",
+  robots: {
+    index: true,
+    follow: true,
   },
-};
+  icons: {
+    icon: '/icon.svg',
+    apple: '/icon.svg',
+  },
+}
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#FBAF3A' },
+    { media: '(prefers-color-scheme: dark)', color: '#131325' },
+  ],
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+}
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode
-}) {
+}>) {
   return (
-    <html lang="es">
-      <Head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-        <link rel="manifest" href="/manifest.json" />
-      </Head>
-      <body className={inter.className}>
-        <FBPixel /> 
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange={false}>
-          {children}
+    <html lang="es" suppressHydrationWarning>
+      <body className="font-sans antialiased">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <LanguageProvider>
+            {children}
+          </LanguageProvider>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   )

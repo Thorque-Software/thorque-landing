@@ -1,0 +1,179 @@
+{
+  "meta": {
+    "title": "Thorque Software | Digital Infrastructure for Businesses",
+    "description": "We automate processes, integrate systems, and develop custom software for businesses and companies that need to scale their digital operations."
+  },
+  "nav": {
+    "services": "Services",
+    "architecture": "Architecture",
+    "process": "Process",
+    "contact": "Contact"
+  },
+  "hero": {
+    "badge": "Technology partner for businesses",
+    "title": "We automate the digital infrastructure of your business",
+    "subtitle": "Complex integrations, intelligent bots, custom CRMs, and scalable APIs. We design systems that power your operation from day one.",
+    "cta_primary": "Request diagnosis",
+    "cta_secondary": "Schedule a meeting",
+    "stat_integrations": "Integrations deployed",
+    "stat_processes": "Processes automated",
+    "stat_companies": "Companies advised"
+  },
+  "problems": {
+    "badge": "The problem",
+    "title": "Challenges holding back growth",
+    "subtitle": "Companies face operational friction that prevents them from scaling. We identify the most critical pain points.",
+    "items": [
+      {
+        "title": "Manual processes",
+        "description": "Repetitive tasks that consume hours of valuable work and generate costly human errors."
+      },
+      {
+        "title": "Leads without follow-up",
+        "description": "Business opportunities lost due to lack of automation in the commercial pipeline."
+      },
+      {
+        "title": "Disconnected systems",
+        "description": "Isolated tools that don't communicate with each other, creating information silos."
+      },
+      {
+        "title": "No automation",
+        "description": "Critical operations that depend on manual intervention, limiting the ability to scale."
+      },
+      {
+        "title": "Low traceability",
+        "description": "Lack of visibility into key metrics that hinder strategic decision-making."
+      },
+      {
+        "title": "Outdated technology",
+        "description": "Legacy infrastructure that doesn't support current market requirements."
+      }
+    ]
+  },
+  "solutions": {
+    "badge": "Solutions",
+    "title": "Technology designed for growing companies",
+    "subtitle": "Each solution is designed to solve real problems and generate measurable impact on your operation.",
+    "items": [
+      {
+        "title": "Process automation",
+        "description": "We eliminate repetitive tasks with intelligent workflows that reduce operating times by up to 80%."
+      },
+      {
+        "title": "CRM + channel integration",
+        "description": "We connect WhatsApp, Instagram, email, and APIs into a unified ecosystem for your sales team."
+      },
+      {
+        "title": "Intelligent bots",
+        "description": "AI agents for acquisition, pre-qualification, and 24/7 automated customer service."
+      },
+      {
+        "title": "Scalable architecture",
+        "description": "Modular systems designed to grow with your business without rewriting code."
+      },
+      {
+        "title": "Strategic dashboards",
+        "description": "Real-time control panels that transform data into actionable decisions."
+      },
+      {
+        "title": "APIs & microservices",
+        "description": "Development of robust APIs and independent services that integrate with any existing system."
+      }
+    ]
+  },
+  "architecture": {
+    "badge": "Technology",
+    "title": "Enterprise-grade architecture",
+    "subtitle": "Every project is built with engineering standards that guarantee performance, security, and scalability.",
+    "items": [
+      {
+        "title": "Robust backend",
+        "description": "Server-side infrastructure with Node.js, Python, and high-availability databases."
+      },
+      {
+        "title": "Official APIs",
+        "description": "Direct integration with WhatsApp Business, Meta, Google, and corporate provider APIs."
+      },
+      {
+        "title": "Advanced security",
+        "description": "End-to-end encryption, multi-factor authentication, and international regulatory compliance."
+      },
+      {
+        "title": "Cloud infrastructure",
+        "description": "Deployments on AWS, Vercel, and cloud services with high availability and auto-scaling."
+      },
+      {
+        "title": "Modular systems",
+        "description": "Microservices architecture that allows scaling components independently."
+      },
+      {
+        "title": "Automated CI/CD",
+        "description": "Continuous integration and deployment pipelines for fast and secure deliveries."
+      }
+    ]
+  },
+  "process": {
+    "badge": "Process",
+    "title": "Consultative approach, concrete results",
+    "subtitle": "We don don't just execute projects. We build strategic partnerships with a proven end-to-end process.",
+    "steps": [
+      {
+        "step": "01",
+        "title": "Strategic diagnosis",
+        "description": "We analyze your operation, identify pain points, and define automation opportunities."
+      },
+      {
+        "step": "02",
+        "title": "Architecture design",
+        "description": "We define the optimal technical solution with diagrams, flows, and detailed specifications."
+      },
+      {
+        "step": "03",
+        "title": "Agile implementation",
+        "description": "Iterative development with weekly sprints, live demos, and continuous feedback."
+      },
+      {
+        "step": "04",
+        "title": "Continuous optimization",
+        "description": "Monitoring, metrics analysis, and constant improvements to maximize the ROI of your investment."
+      }
+    ]
+  },
+  "differentiator": {
+    "title": "We don't build generic software.",
+    "highlight": "We design digital infrastructure that scales with your business.",
+    "cta": "Get started"
+  },
+  "contact": {
+    "badge": "Contact",
+    "title": "Let's talk about your next project",
+    "subtitle": "Fill out the form and our team will contact you within the next 24 business hours.",
+    "form": {
+      "name": "Full name",
+      "email": "Corporate email",
+      "company": "Company",
+      "role": "Role",
+      "message": "Tell us about your project",
+      "submit": "Send message",
+      "sending": "Sending...",
+      "success_title": "Message sent",
+      "success_message": "Thanks for reaching out. We'll get back to you soon.",
+      "error_message": "There was an error sending the message. Please try again."
+    },
+    "name_placeholder": "Your name",
+    "email_placeholder": "you@company.com",
+    "company_placeholder": "Your company name",
+    "role_placeholder": "Your role",
+    "message_placeholder": "Briefly describe what you need..."
+  },
+  "footer": {
+    "description": "Digital infrastructure for companies that need to scale.",
+    "rights": "All rights reserved.",
+    "links_title": "Navigation",
+    "contact_title": "Contact",
+    "location": "Dr. Álvarez 1530, Rosario, Argentina",
+    "operational": "Systems operational",
+    "testimonial": "Thorque transformed our entire digital operation. Response time dropped from 48h to under 2h.",
+    "testimonial_author": "CTO, Fintech LATAM"
+  }
+}
