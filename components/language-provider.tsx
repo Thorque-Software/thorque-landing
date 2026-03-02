@@ -37,7 +37,7 @@ function getNestedValue(obj: Record<string, unknown>, path: string): string {
 }
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-    const [locale, setLocaleState] = useState<Locale>("es")
+    const [locale, setLocaleState] = useState<Locale>("en")
     const [mounted, setMounted] = useState(false)
 
     useEffect(() => {
