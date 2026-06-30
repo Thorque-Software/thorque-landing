@@ -45,15 +45,6 @@ export function Architecture() {
           transition={{ duration: 0.7 }}
           className="mx-auto mb-20 max-w-3xl text-center"
         >
-          <motion.span
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={headerInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-5 py-2 text-sm font-medium text-primary"
-          >
-            <span className="h-1.5 w-1.5 rounded-full bg-current" />
-            {t("architecture.badge")}
-          </motion.span>
           <h2 className="mb-5 text-balance text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">
             {t("architecture.title")}
           </h2>
