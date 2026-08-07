@@ -7,6 +7,7 @@
     "services": "Servicios",
     "architecture": "Arquitectura",
     "process": "Proceso",
+    "team": "Equipo",
     "contact": "Contacto"
   },
   "hero": {
@@ -138,6 +139,12 @@
         "description": "Monitoreo, análisis de métricas y mejoras constantes para maximizar el ROI de tu inversión."
       }
     ]
+  },
+  "team": {
+    "badge": "El equipo",
+    "title": "Las personas detrás de Thorque",
+    "subtitle": "Ingenieros en sistemas que diseñan, construyen y operan la infraestructura detrás de cada proyecto.",
+    "role": "Ingeniero en Sistemas"
   },
   "differentiator": {
     "title": "No desarrollamos software genérico.",

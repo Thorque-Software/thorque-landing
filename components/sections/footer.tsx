@@ -18,6 +18,7 @@ export function Footer() {
     { label: t("nav.services"), href: "#solutions" },
     { label: t("nav.architecture"), href: "#architecture" },
     { label: t("nav.process"), href: "#process" },
+    { label: t("nav.team"), href: "#team" },
     { label: t("nav.contact"), href: "#contact" },
   ]
 

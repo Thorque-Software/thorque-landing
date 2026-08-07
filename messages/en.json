@@ -7,6 +7,7 @@
     "services": "Services",
     "architecture": "Architecture",
     "process": "Process",
+    "team": "Team",
     "contact": "Contact"
   },
   "hero": {
@@ -138,6 +139,12 @@
         "description": "Monitoring, metrics analysis, and constant improvements to maximize the ROI of your investment."
       }
     ]
+  },
+  "team": {
+    "badge": "The team",
+    "title": "The people behind Thorque",
+    "subtitle": "Systems engineers who design, build, and operate the infrastructure behind every project.",
+    "role": "Systems Engineer"
   },
   "differentiator": {
     "title": "We don't build generic software.",

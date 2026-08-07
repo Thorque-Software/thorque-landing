@@ -8,6 +8,7 @@ import { Problems } from "@/components/sections/problems"
 import { Solutions } from "@/components/sections/solutions"
 import { Architecture } from "@/components/sections/architecture"
 import { Process } from "@/components/sections/process"
+import { Team } from "@/components/sections/team"
 import { Differentiator } from "@/components/sections/differentiator"
 import { Contact } from "@/components/sections/contact"
 import { Footer } from "@/components/sections/footer"
@@ -75,6 +76,7 @@ export default function HomePage() {
           <Solutions />
           <Architecture />
           <Process />
+          <Team />
           <Differentiator />
           <Contact />
         </main>
