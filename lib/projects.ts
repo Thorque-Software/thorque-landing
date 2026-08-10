@@ -45,7 +45,6 @@ export const projects: Project[] = [
     name: "RBA Residents",
     logo: "/empresas/rbaresidents.webp",
     services: ["management_system", "integration"],
-    invertLogo: true,
     gallery: [
       { src: "/empresas/rbaresidents/sistema1.webp" },
       { src: "/empresas/rbaresidents/sistema2.webp" },

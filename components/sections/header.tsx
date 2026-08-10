@@ -10,7 +10,9 @@ import { Menu, X, Sun, Moon, Globe } from "lucide-react"
 export function Header() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
-  const { theme, setTheme } = useTheme()
+  // resolvedTheme, not theme: with defaultTheme="system" theme is the
+  // literal "system" on a fresh visit, so "dark" checks never match.
+  const { resolvedTheme, setTheme } = useTheme()
   const { locale, setLocale, t } = useLanguage()
   const [mounted, setMounted] = useState(false)
   const { scrollY } = useScroll()
@@ -47,7 +49,7 @@ export function Header() {
             <motion.img
               whileHover={{ scale: 1.02 }}
               transition={{ type: "spring", stiffness: 400, damping: 15 }}
-              src={theme === "dark" ? "/thorque-light.svg" : "/thorque-dark.svg"}
+              src={resolvedTheme === "dark" ? "/thorque-light.svg" : "/thorque-dark.svg"}
               alt="Thorque Logo"
               className="h-11 w-auto"
             />
@@ -94,11 +96,11 @@ export function Header() {
 
           {mounted && (
             <button
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
               className="flex h-9 w-9 items-center justify-center rounded-xl text-muted-foreground transition-all hover:bg-secondary hover:text-foreground"
               aria-label="Toggle theme"
             >
-              {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+              {resolvedTheme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
             </button>
           )}
 

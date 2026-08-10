@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState, useCallback } from "react"
 import { motion, useScroll, useTransform, useMotionValue, useSpring, AnimatePresence } from "framer-motion"
 import { useLanguage } from "@/hooks/use-language"
-import { useTheme } from "next-themes"
 import { ArrowRight, Calendar } from "lucide-react"
 
 /* ── Animated particles canvas ─── */
@@ -161,7 +160,6 @@ function TypingText({ text }: { text: string }) {
 /* ── HERO ─── */
 export function Hero() {
   const { t } = useLanguage()
-  const { theme } = useTheme()
   const [mounted, setMounted] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
 

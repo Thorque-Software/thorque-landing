@@ -9,7 +9,7 @@ import { Linkedin, Mail, ArrowUpRight, Facebook, Instagram } from "lucide-react"
 
 export function Footer() {
   const { t } = useLanguage()
-  const { theme } = useTheme()
+  const { resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => { setMounted(true) }, [])
@@ -36,7 +36,7 @@ export function Footer() {
               {mounted ? (
                 <motion.img
                   whileHover={{ scale: 1.02 }}
-                  src={theme === "dark" ? "/thorque-light.svg" : "/thorque-dark.svg"}
+                  src={resolvedTheme === "dark" ? "/thorque-light.svg" : "/thorque-dark.svg"}
                   alt="Thorque Logo"
                   className="h-10 w-auto opacity-80 hover:opacity-100 transition-opacity"
                 />
