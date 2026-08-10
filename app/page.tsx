@@ -8,6 +8,7 @@ import { Problems } from "@/components/sections/problems"
 import { Solutions } from "@/components/sections/solutions"
 import { Architecture } from "@/components/sections/architecture"
 import { Process } from "@/components/sections/process"
+import { Portfolio } from "@/components/sections/portfolio"
 import { Team } from "@/components/sections/team"
 import { Differentiator } from "@/components/sections/differentiator"
 import { Contact } from "@/components/sections/contact"
@@ -54,8 +55,27 @@ export default function HomePage() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1800)
-    return () => clearTimeout(timer)
+    const MIN_MS = 400 // let the logo animation land instead of flashing
+    const MAX_MS = 1500 // never hold the page hostage to a slow asset
+    const start = performance.now()
+    let settle: ReturnType<typeof setTimeout>
+
+    const finish = () => {
+      settle = setTimeout(
+        () => setLoading(false),
+        Math.max(0, MIN_MS - (performance.now() - start))
+      )
+    }
+
+    if (document.readyState === "complete") finish()
+    else window.addEventListener("load", finish, { once: true })
+
+    const cap = setTimeout(() => setLoading(false), MAX_MS)
+    return () => {
+      window.removeEventListener("load", finish)
+      clearTimeout(settle)
+      clearTimeout(cap)
+    }
   }, [])
 
   return (
@@ -67,7 +87,7 @@ export default function HomePage() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: loading ? 0 : 1 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
+        transition={{ duration: 0.4 }}
       >
         <Header />
         <main>
@@ -76,6 +96,7 @@ export default function HomePage() {
           <Solutions />
           <Architecture />
           <Process />
+          <Portfolio />
           <Team />
           <Differentiator />
           <Contact />

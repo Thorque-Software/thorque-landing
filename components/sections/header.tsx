@@ -19,20 +19,24 @@ export function Header() {
   useMotionValueEvent(scrollY, "change", (v) => setScrolled(v > 20))
 
   const navLinks = [
-    { label: t("nav.services"), href: "#solutions" },
-    { label: t("nav.architecture"), href: "#architecture" },
-    { label: t("nav.process"), href: "#process" },
-    { label: t("nav.team"), href: "#team" },
-    { label: t("nav.contact"), href: "#contact" },
+    { label: t("nav.services"), href: "/#solutions" },
+    { label: t("nav.architecture"), href: "/#architecture" },
+    { label: t("nav.process"), href: "/#process" },
+    { label: t("nav.portfolio"), href: "/#portfolio" },
+    { label: t("nav.team"), href: "/#team" },
+    { label: t("nav.contact"), href: "/#contact" },
   ]
 
+  // The scrolled bar is almost-opaque rather than backdrop-blurred: a viewport-wide
+  // blurred backdrop had to be recomputed every frame as content scrolled under it,
+  // and on its own accounted for most of the page's frame budget.
   return (
     <motion.header
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
-        ? "bg-background/70 backdrop-blur-2xl border-b border-border/30 shadow-lg shadow-background/10"
+        ? "bg-background/95 border-b border-border/30 shadow-lg shadow-background/10"
         : "bg-transparent"
         }`}
     >
@@ -74,7 +78,7 @@ export function Header() {
         <div className="flex items-center gap-1">
           {/* CTA Button (desktop) */}
           <a
-            href="#contact"
+            href="/#contact"
             className="mr-2 hidden items-center gap-2 rounded-xl bg-primary px-5 py-2 text-xs font-bold text-primary-foreground transition-all hover:shadow-lg hover:shadow-primary/20 md:inline-flex"
           >
             {t("hero.cta_primary")}
@@ -116,7 +120,7 @@ export function Header() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="overflow-hidden border-b border-border/30 bg-background/95 backdrop-blur-2xl md:hidden"
+            className="overflow-hidden border-b border-border/30 bg-background md:hidden"
           >
             <nav className="flex flex-col gap-1 px-6 py-4">
               {navLinks.map((link, i) => (
@@ -136,7 +140,7 @@ export function Header() {
                 </motion.div>
               ))}
               <a
-                href="#contact"
+                href="/#contact"
                 onClick={() => setMobileOpen(false)}
                 className="mt-2 rounded-xl bg-primary px-4 py-3 text-center text-sm font-bold text-primary-foreground"
               >

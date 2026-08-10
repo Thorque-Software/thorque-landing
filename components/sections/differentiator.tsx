@@ -13,7 +13,7 @@ export function Differentiator() {
   const bgY = useTransform(scrollYProgress, [0, 1], [100, -100])
 
   return (
-    <section className="relative py-28 md:py-40">
+    <section className="relative py-16 md:py-24">
       <div className="mx-auto max-w-7xl px-6">
         <motion.div
           ref={ref}
@@ -54,7 +54,7 @@ export function Differentiator() {
             />
           </div>
 
-          <div className="relative z-10 px-8 py-20 md:px-20 md:py-28">
+          <div className="relative z-10 px-8 py-16 md:px-20 md:py-20">
             <div className="mx-auto max-w-4xl text-center">
               {/* Main statement */}
               <motion.h2

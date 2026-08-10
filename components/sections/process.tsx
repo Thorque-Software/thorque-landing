@@ -66,7 +66,7 @@ function ProcessStep({
       >
         <motion.div
           whileHover={{ y: -4 }}
-          className="glow-card rounded-2xl border border-border/50 bg-card/50 p-6 backdrop-blur-sm"
+          className="glow-card rounded-2xl border border-border/50 bg-card/50 p-6"
         >
           <div className="relative z-10">
             <h3 className="mb-3 text-xl font-bold text-foreground">
@@ -92,7 +92,7 @@ export function Process() {
   const headerInView = useInView(headerRef, { once: true, margin: "-100px" })
 
   return (
-    <section id="process" className="noise-overlay relative overflow-hidden py-28 md:py-40">
+    <section id="process" className="noise-overlay relative overflow-hidden py-16 md:py-24">
       {/* Subtle grid */}
       <div className="pointer-events-none absolute inset-0">
         <div
@@ -111,7 +111,7 @@ export function Process() {
           initial={{ opacity: 0, y: 40 }}
           animate={headerInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="mx-auto mb-20 max-w-3xl text-center"
+          className="mx-auto mb-14 max-w-3xl text-center"
         >
           <h2 className="mb-5 text-balance text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">
             {t("process.title")}

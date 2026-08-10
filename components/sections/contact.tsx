@@ -19,7 +19,7 @@ export function Contact() {
     }`
 
   return (
-    <section id="contact" className="noise-overlay relative overflow-hidden py-28 md:py-40">
+    <section id="contact" className="noise-overlay relative overflow-hidden py-16 md:py-24">
       {/* Ambient glow */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="animate-float-slow absolute bottom-0 left-1/2 h-[600px] w-[900px] -translate-x-1/2 translate-y-1/4 rounded-full bg-primary/4 blur-[180px] dark:bg-primary/8" />
@@ -32,7 +32,7 @@ export function Contact() {
           initial={{ opacity: 0, y: 40 }}
           animate={headerInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="mx-auto mb-20 max-w-3xl text-center"
+          className="mx-auto mb-14 max-w-3xl text-center"
         >
           <h2 className="mb-5 text-balance text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">
             {t("contact.title")}
@@ -54,7 +54,7 @@ export function Contact() {
             <form
               action="https://formspree.io/f/mvgowbgg"
               method="POST"
-              className="glow-card h-full rounded-2xl border border-border/50 bg-card/50 p-8 backdrop-blur-sm md:p-10"
+              className="glow-card h-full rounded-2xl border border-border/50 bg-card/50 p-8 md:p-10"
             >
               <div className="grid gap-6 sm:grid-cols-2">
                 <div className="flex flex-col gap-2">
@@ -136,7 +136,7 @@ export function Contact() {
               href="https://wa.me/5493416009423"
               target="_blank"
               rel="noopener noreferrer"
-              className="glow-card group flex items-center gap-4 rounded-2xl border border-border/50 bg-card/50 p-6 backdrop-blur-sm transition-all hover:border-primary/30"
+              className="glow-card group flex items-center gap-4 rounded-2xl border border-border/50 bg-card/50 p-6 transition-all hover:border-primary/30"
             >
               <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary/15">
                 <MessageSquare className="h-5 w-5" />
@@ -153,7 +153,7 @@ export function Contact() {
               href="https://calendly.com/thorque/30min"
               target="_blank"
               rel="noopener noreferrer"
-              className="glow-card group flex items-center gap-4 rounded-2xl border border-border/50 bg-card/50 p-6 backdrop-blur-sm transition-all hover:border-primary/30"
+              className="glow-card group flex items-center gap-4 rounded-2xl border border-border/50 bg-card/50 p-6 transition-all hover:border-primary/30"
             >
               <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary/15">
                 <Calendar className="h-5 w-5" />
@@ -168,7 +168,7 @@ export function Contact() {
             {/* Email card */}
             <a
               href="mailto:contacto@thorque.com.ar"
-              className="glow-card group flex items-center gap-4 rounded-2xl border border-border/50 bg-card/50 p-6 backdrop-blur-sm transition-all hover:border-primary/30"
+              className="glow-card group flex items-center gap-4 rounded-2xl border border-border/50 bg-card/50 p-6 transition-all hover:border-primary/30"
             >
               <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary/15">
                 <Mail className="h-5 w-5" />

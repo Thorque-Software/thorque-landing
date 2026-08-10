@@ -56,7 +56,7 @@ function TiltCard({
       style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
       onMouseMove={handleMouse}
       onMouseLeave={handleLeave}
-      className="group relative overflow-hidden rounded-2xl border border-border/50 bg-card/60 p-8 backdrop-blur-sm transition-colors duration-300 hover:border-primary/30"
+      className="group relative overflow-hidden rounded-2xl border border-border/50 bg-card/60 p-8 transition-colors duration-300 hover:border-primary/30"
     >
       {/* Hover spotlight effect */}
       <div className="pointer-events-none absolute -right-16 -top-16 h-48 w-48 rounded-full bg-primary/0 blur-[60px] transition-all duration-700 group-hover:bg-primary/8" />
@@ -88,7 +88,7 @@ export function Solutions() {
   const headerInView = useInView(headerRef, { once: true, margin: "-100px" })
 
   return (
-    <section id="solutions" className="noise-overlay relative overflow-hidden py-28 md:py-40">
+    <section id="solutions" className="noise-overlay relative overflow-hidden py-16 md:py-24">
       {/* Aurora background */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="animate-aurora absolute -left-1/4 top-0 h-full w-[150%] bg-gradient-to-r from-primary/3 via-transparent to-accent/3 opacity-50" />
@@ -101,7 +101,7 @@ export function Solutions() {
           initial={{ opacity: 0, y: 40 }}
           animate={headerInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="mx-auto mb-20 max-w-3xl text-center"
+          className="mx-auto mb-14 max-w-3xl text-center"
         >
           <h2 className="mb-5 text-balance text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">
             {t("solutions.title")}

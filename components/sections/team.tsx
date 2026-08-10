@@ -21,7 +21,10 @@ function MemberCard({
 }) {
   return (
     <div className="group mr-6 w-[260px] shrink-0 sm:w-[300px] lg:w-[340px]">
-      <div className="overflow-hidden rounded-2xl border border-border/50 bg-card/60 backdrop-blur-sm transition-colors duration-300 hover:border-primary/40">
+      {/* no backdrop-blur here: these cards translate every frame, and a backdrop
+          filter would be recomputed on each one — over a flat section background
+          it buys nothing visually */}
+      <div className="overflow-hidden rounded-2xl border border-border/50 bg-card transition-colors duration-300 hover:border-primary/40">
         {/* Portrait — light panel so the rim light on the shirts doesn't read as a halo */}
         <div className="relative aspect-[3/4] overflow-hidden bg-gradient-to-b from-[#F6F4F1] via-[#EBE7E2] to-[#DAD5CE]">
           {/* Warm brand glow that blooms on hover */}
@@ -66,7 +69,7 @@ export function Team() {
   const lineup = [...members, ...members]
 
   return (
-    <section id="team" className="noise-overlay relative overflow-hidden py-28 md:py-40">
+    <section id="team" className="noise-overlay relative overflow-hidden py-16 md:py-24">
       {/* Aurora background */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="animate-aurora absolute -left-1/4 top-0 h-full w-[150%] bg-gradient-to-r from-accent/3 via-transparent to-primary/3 opacity-50" />
@@ -79,7 +82,7 @@ export function Team() {
           initial={{ opacity: 0, y: 40 }}
           animate={headerInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="mx-auto mb-20 max-w-3xl px-6 text-center"
+          className="mx-auto mb-14 max-w-3xl px-6 text-center"
         >
           <span className="mb-5 inline-block rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.15em] text-primary">
             {t("team.badge")}

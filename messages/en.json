@@ -7,6 +7,7 @@
     "services": "Services",
     "architecture": "Architecture",
     "process": "Process",
+    "portfolio": "Projects",
     "team": "Team",
     "contact": "Contact"
   },
@@ -15,10 +16,7 @@
     "title": "We automate the digital infrastructure of your business",
     "subtitle": "Complex integrations, intelligent bots, custom CRMs, and scalable APIs. We design systems that power your operation from day one.",
     "cta_primary": "Request diagnosis",
-    "cta_secondary": "Schedule a meeting",
-    "stat_integrations": "Integrations deployed",
-    "stat_processes": "Processes automated",
-    "stat_companies": "Companies advised"
+    "cta_secondary": "Schedule a meeting"
   },
   "problems": {
     "badge": "The problem",
@@ -139,6 +137,95 @@
         "description": "Monitoring, metrics analysis, and constant improvements to maximize the ROI of your investment."
       }
     ]
+  },
+  "portfolio": {
+    "badge": "Projects",
+    "title": "What we've built",
+    "subtitle": "Systems in production that run our clients' day-to-day operations.",
+    "own_product": "Own product",
+    "view_project": "View project",
+    "back": "Back to projects",
+    "what_we_built": "What we built",
+    "next_project": "Next project:",
+    "services": {
+      "stock": "Stock management",
+      "crm": "CRM",
+      "ecommerce": "E-commerce",
+      "ai_agent": "AI agent",
+      "ai": "AI",
+      "anses": "ANSES data extraction",
+      "app": "App",
+      "alerts": "Alert system",
+      "leads": "Lead capture and management",
+      "properties": "Property management",
+      "portals": "Real estate portal integrations",
+      "internal_app": "Internal management app",
+      "field_staff": "Field staff",
+      "management_system": "Management system",
+      "integration": "Integration"
+    },
+    "challenge": "The challenge",
+    "solution": "The solution",
+    "result": "The result",
+    "projects": {
+      "agribusiness": {
+        "challenge": "The client had to run their operation with a team working out in the field. The problem: they had no way to reach head office, and every record was filled in by hand on paper forms. That meant delays, scattered information, and duplicated work.",
+        "solution": "We built a custom app and equipped every field worker with a tablet. They now enter information digitally, straight from the field, and stay in touch with head office at all times.",
+        "tagline": "A custom app and tablets so field workers log data on site and stay connected to head office."
+      },
+      "arroyo-fitness": {
+        "challenge": "The e-commerce site was outdated and wasn't even using the features it had: prices were wrong, so customers ended up on WhatsApp to buy. That was the second problem. WhatsApp had no oversight — the team took turns replying, enquiries slipped through, and they couldn't keep up with everything coming in. On top of that, there was no stock control.",
+        "solution": "We set up a stock system wired into a new e-commerce site, with payments and transfers automated. On the service side we added a CRM where reps claim and tag each lead, plus an AI agent that handles first contact before handing the conversation over.",
+        "result": "A store that sells on its own again and a team that no longer loses enquiries: stock under control, payments automated, and every lead with an owner.",
+        "tagline": "Stock wired into a new e-commerce site, payments automated, and a CRM with an AI agent so no enquiry slips through."
+      },
+      "rba-residents": {
+        "challenge": "Rebora listed its properties across several real estate portals at once, and leads arrived scattered everywhere: each portal on its own, plus whatever came in over WhatsApp. With no single place to collect them, an enquiry could easily go cold, or it was unclear which agent was meant to answer it.",
+        "solution": "We built a system that automatically pulls leads from every portal they list on (Móvil 24, La Mudi, Casa y Terreno, Propiedades.com) and feeds them into a central CRM in Pipedrive. From that same place they can also publish properties to every portal at once, instead of loading each one separately. We added a WhatsApp bot that picks up the leads coming in there, funnels them into Pipedrive too, and distributes them among the agents round robin.",
+        "result": "Every lead in one place and assigned on its own: centralised publishing, nothing lost between portals, and each enquiry with its agent from minute one.",
+        "tagline": "Leads pulled automatically from four real estate portals into a single CRM, with centralised publishing and round-robin assignment."
+      },
+      "ocularis": {
+        "challenge": "The eye clinic ran its appointments out of the ERP, but had no automatic way to remind each patient of their visit. Without reminders came the no-shows and the appointments lost without warning, leaving the schedule out of date.",
+        "solution": "We built a system the clinic feeds with an Excel file exported from its ERP. From that data, the system automatically sends every patient a reminder the day before their appointment, where they can confirm or cancel. Each reply lands in the system's calendar instantly, so the team sees the real state of the schedule. It also takes an Excel of yearly reminders for the check-ups that repeat every year.",
+        "result": "Fewer no-shows and a schedule that stays current: automatic reminders, confirmations in real time, and annual check-ups covered without manual follow-up.",
+        "tagline": "Automatic appointment reminders built from the ERP's Excel export, with confirmations that hit the calendar instantly."
+      },
+      "hopeslab": {
+        "challenge": "Sport runs on a web of people who depend on each other — athletes, coaches, clubs, physiotherapists, leagues, tournaments, conditioning trainers, photographers — yet connecting with one another was still scattered and informal, spread across loose contacts and networks that were never built for that ecosystem.",
+        "solution": "We built HopesLab, an app that brings the whole sports community into one space. Athletes, coaches, clubs, physiotherapists, leagues, tournaments, conditioning trainers, photographers and every other profile meet, connect and work inside a single network made for them.",
+        "result": "The entire sports ecosystem connected in one place: every player finds the others, and opportunities stop slipping away among loose contacts.",
+        "tagline": "A network that brings the whole sports community — athletes, clubs, coaches and more — into one space."
+      },
+      "wade": {
+        "summary": "Wade is a platform for Argentine businesses that automates the entry and control of purchase invoices. Instead of chasing PDFs through chats and email and copying data by hand, you send the document through the channel you already use and Wade extracts every field with AI (CUIT, CAE, date, line items, totals), validates it against tax rules and — if you want — reconciles it automatically against your purchase orders or product catalogue. Everything stays centralised, traceable and exportable to Google Sheets, Excel, the VAT ledger or your ERP.",
+        "tagline": "Purchase invoice entry and control on autopilot: AI extraction, tax validation and reconciliation against purchase orders."
+      },
+      "credimundo": {
+        "challenge": "Every loan enquiry depended on someone from the team answering it, putting the quote together by hand and following it up. At the volume of enquiries coming in, that meant slow replies, proposals that took a while to arrive, and leads going cold before an agent could work them.",
+        "solution": "We built a bot that quotes the loan proposal automatically and sends it to the customer over WhatsApp instantly. From there it keeps the conversation going and qualifies the person according to how interested they are. Once the lead is ready, it lands in the CRM sorted and waiting for an agent to step in and simply close the deal.",
+        "result": "Immediate replies and leads that reach the team warm: automatic quotes over WhatsApp, qualification with no manual work, and agents spending their time closing rather than filtering.",
+        "tagline": "A bot that quotes the loan and sends it over WhatsApp instantly, qualifies the lead and leaves it ready in the CRM for the agent to close."
+      },
+      "grid": {
+        "challenge": "Traditional social networks connect you well with distant contacts, but fall short on what's closest: finding and talking to people in your own area, right now. There's no space built for the local community and immediate interaction, rather than for the algorithm or long-distance ties.",
+        "solution": "We built a social platform aimed at connecting nearby people in real time. Through geolocation, users discover profiles in their area, send connection requests and chat instantly, one-to-one or in groups. It adds a social feed with posts, comments and reactions, profiles with following and notifications, and an admin panel to moderate users, posts and comments. And it doesn't only connect people: it also brings users closer to the businesses around them.",
+        "result": "A local community that's alive and orderly: people find each other and the shops in their area, talk in real time and take part in a social feed, all with moderation in place.",
+        "tagline": "A social platform that uses geolocation to connect people and local businesses in the same area, with real-time chat, a feed and moderation."
+      }
+    },
+    "visit_site": "Visit site",
+    "view_case": "View case",
+    "services_short": {
+      "leads": "Lead extraction",
+      "properties": "Properties",
+      "portals": "Real estate portals",
+      "internal_app": "Internal management",
+      "field_staff": "Field staff",
+      "alerts": "Alerts",
+      "stock": "Stock"
+    },
+    "visit_instagram": "Visit Instagram"
   },
   "team": {
     "badge": "The team",

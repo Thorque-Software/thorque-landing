@@ -37,7 +37,7 @@ function ProblemCard({
         ease: [0.22, 1, 0.36, 1],
       }}
       whileHover={{ y: -6, transition: { duration: 0.3, type: "spring", stiffness: 400 } }}
-      className="glow-card group relative rounded-2xl border border-border/50 bg-card/50 p-6 backdrop-blur-sm"
+      className="glow-card group relative rounded-2xl border border-border/50 bg-card/50 p-6"
     >
       <div className="relative z-10">
         {/* Icon with animated ring */}
@@ -75,7 +75,7 @@ export function Problems() {
   const headerInView = useInView(headerRef, { once: true, margin: "-100px" })
 
   return (
-    <section id="problems" className="noise-overlay relative overflow-hidden py-28 md:py-40">
+    <section id="problems" className="noise-overlay relative overflow-hidden py-16 md:py-24">
       {/* Ambient background */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-1/2 top-0 h-[600px] w-[1000px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-destructive/3 blur-[150px] dark:bg-red-500/5" />
@@ -88,7 +88,7 @@ export function Problems() {
           initial={{ opacity: 0, y: 40 }}
           animate={headerInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="mx-auto mb-20 max-w-3xl text-center"
+          className="mx-auto mb-14 max-w-3xl text-center"
         >
           <h2 className="mb-5 text-balance text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">
             {t("problems.title")}

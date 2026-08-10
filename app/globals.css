@@ -189,15 +189,15 @@
 
   0%,
   100% {
-    transform: translate(0, 0) rotate(0deg);
+    transform: translate(0, 0);
   }
 
   33% {
-    transform: translate(60px, -40px) rotate(120deg);
+    transform: translate(60px, -40px);
   }
 
   66% {
-    transform: translate(-30px, -80px) rotate(240deg);
+    transform: translate(-30px, -80px);
   }
 }
 
@@ -341,7 +341,7 @@
 
 .animate-aurora {
   background-size: 400% 400%;
-  animation: aurora 15s ease infinite;
+  background-position: 40% 50%;
 }
 
 .animate-marquee {
@@ -363,7 +363,6 @@
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   opacity: 0.03;
   pointer-events: none;
-  animation: grain 8s steps(10) infinite;
 }
 
 .dark .noise-overlay::before {
@@ -388,7 +387,6 @@
       transparent 60%,
       transparent 100%);
   background-size: 200% 200%;
-  animation: shimmer-border 4s linear infinite;
   z-index: 0;
   opacity: 0;
   transition: opacity 0.5s ease;
@@ -396,6 +394,7 @@
 
 .glow-card:hover::before {
   opacity: 1;
+  animation: shimmer-border 4s linear infinite;
 }
 
 .glow-card>* {
@@ -458,4 +457,18 @@
 ::selection {
   background: oklch(0.78 0.16 65 / 0.3);
   color: inherit;
+}
+/* Respect the OS "reduce motion" setting: kill the decorative loops,
+   keep the one-shot reveals so nothing ends up invisible. */
+@media (prefers-reduced-motion: reduce) {
+
+  .animate-float-slow,
+  .animate-float-reverse,
+  .animate-float-diagonal,
+  .animate-pulse-glow,
+  .animate-marquee,
+  .animate-shimmer-border,
+  .glow-card:hover::before {
+    animation: none !important;
+  }
 }

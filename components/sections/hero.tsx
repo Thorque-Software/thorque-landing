@@ -15,8 +15,10 @@ function ParticleField() {
     if (!canvas) return
     const ctx = canvas.getContext("2d")
     if (!ctx) return
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
 
-    let animId: number
+    let animId: number | null = null
+    let onScreen = true
     let particles: { x: number; y: number; vx: number; vy: number; size: number; opacity: number }[] = []
 
     function resize() {
@@ -27,8 +29,8 @@ function ParticleField() {
     resize()
     window.addEventListener("resize", resize)
 
-    // Create particles
-    const count = Math.min(80, Math.floor(window.innerWidth / 15))
+    // Create particles. The link pass below is O(n²), so the count sets the frame cost.
+    const count = Math.min(40, Math.floor(window.innerWidth / 32))
     for (let i = 0; i < count; i++) {
       particles.push({
         x: Math.random() * (canvas?.width ?? 1920),
@@ -58,72 +60,65 @@ function ParticleField() {
         ctx.fill()
       }
 
-      // Draw connections
+      // Link nearby particles. One path for all the lines instead of a
+      // beginPath/stroke pair per pair, and squared distances to skip the sqrt.
+      const MAX = 120
+      const MAX2 = MAX * MAX
+      ctx.strokeStyle = "rgba(251, 175, 58, 0.05)"
+      ctx.lineWidth = 0.5
+      ctx.beginPath()
       for (let i = 0; i < particles.length; i++) {
+        const a = particles[i]
         for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x
-          const dy = particles[i].y - particles[j].y
-          const dist = Math.sqrt(dx * dx + dy * dy)
-          if (dist < 120) {
-            ctx.beginPath()
-            ctx.moveTo(particles[i].x, particles[i].y)
-            ctx.lineTo(particles[j].x, particles[j].y)
-            ctx.strokeStyle = `rgba(251, 175, 58, ${0.06 * (1 - dist / 120)})`
-            ctx.lineWidth = 0.5
-            ctx.stroke()
+          const b = particles[j]
+          const dx = a.x - b.x
+          const dy = a.y - b.y
+          if (dx * dx + dy * dy < MAX2) {
+            ctx.moveTo(a.x, a.y)
+            ctx.lineTo(b.x, b.y)
           }
         }
       }
+      ctx.stroke()
 
       animId = requestAnimationFrame(draw)
     }
 
-    draw()
+    function start() {
+      if (animId === null) draw()
+    }
+    function stop() {
+      if (animId !== null) {
+        cancelAnimationFrame(animId)
+        animId = null
+      }
+    }
+
+    // Don't burn frames on a canvas nobody is looking at.
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        onScreen = entry.isIntersecting
+        onScreen && !document.hidden ? start() : stop()
+      },
+      { threshold: 0 }
+    )
+    io.observe(canvas)
+
+    function onVisibility() {
+      document.hidden || !onScreen ? stop() : start()
+    }
+    document.addEventListener("visibilitychange", onVisibility)
+
+    start()
     return () => {
-      cancelAnimationFrame(animId)
+      stop()
+      io.disconnect()
+      document.removeEventListener("visibilitychange", onVisibility)
       window.removeEventListener("resize", resize)
     }
   }, [])
 
   return <canvas ref={canvasRef} className="pointer-events-none absolute inset-0 z-[2]" />
-}
-
-/* ── Animated counter ─── */
-function AnimatedCounter({ target, suffix = "" }: { target: number; suffix?: string }) {
-  const [count, setCount] = useState(0)
-  const ref = useRef<HTMLDivElement>(null)
-  const started = useRef(false)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !started.current) {
-          started.current = true
-          const duration = 2000
-          const startTime = performance.now()
-          function animate(now: number) {
-            const progress = Math.min((now - startTime) / duration, 1)
-            const eased = 1 - Math.pow(1 - progress, 3)
-            setCount(Math.floor(eased * target))
-            if (progress < 1) requestAnimationFrame(animate)
-          }
-          requestAnimationFrame(animate)
-        }
-      },
-      { threshold: 0.5 }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [target])
-
-  return (
-    <div ref={ref} className="text-4xl font-bold tabular-nums text-foreground md:text-5xl">
-      {count}
-      <span className="text-primary">{suffix}</span>
-    </div>
-  )
 }
 
 /* ── Typing effect for subtitle ─── */
@@ -177,30 +172,11 @@ export function Hero() {
   const y = useTransform(scrollYProgress, [0, 0.9], [0, -100])
   const scale = useTransform(scrollYProgress, [0, 0.9], [1, 0.9])
 
-  const stats = [
-    { value: 50, suffix: "+", label: t("hero.stat_integrations") },
-    { value: 200, suffix: "+", label: t("hero.stat_processes") },
-    { value: 30, suffix: "+", label: t("hero.stat_companies") },
-  ]
-
   return (
     <section ref={containerRef} className="relative min-h-screen overflow-hidden">
-      {/* Video Background */}
-      <div className="video-overlay absolute inset-0">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute inset-0 h-full w-full object-cover"
-          poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1920' height='1080'%3E%3Crect fill='%23090918' width='100%25' height='100%25'/%3E%3C/svg%3E"
-        >
-          <source
-            src="https://cdn.coverr.co/videos/coverr-abstract-dark-particles-9578/1080p.mp4"
-            type="video/mp4"
-          />
-        </video>
-      </div>
+      {/* Background — the old coverr.co source 301s to their homepage and returns HTML,
+          so every load paid a cross-origin round-trip and still fell back to this colour */}
+      <div className="video-overlay absolute inset-0 bg-[#090918]" />
 
       {/* Particles */}
       <ParticleField />
@@ -287,27 +263,6 @@ export function Hero() {
               </a>
             </motion.div>
           </div>
-
-          {/* Stats with glow */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.8 }}
-            className="mx-auto mt-12 md:mt-24 grid max-w-4xl grid-cols-1 gap-4 md:gap-6 sm:grid-cols-3"
-          >
-            {stats.map((stat, i) => (
-              <motion.div
-                key={i}
-                whileHover={{ scale: 1.03, y: -4 }}
-                transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                className="group relative flex flex-col items-center gap-2 rounded-2xl border border-foreground/[0.06] bg-foreground/[0.03] p-8 backdrop-blur-xl"
-              >
-                <div className="pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br from-[#FBAF3A]/0 to-[#F8770B]/0 opacity-0 transition-opacity duration-500 group-hover:from-[#FBAF3A]/5 group-hover:to-[#F8770B]/5 group-hover:opacity-100" />
-                <AnimatedCounter target={stat.value} suffix={stat.suffix} />
-                <span className="text-sm text-muted-foreground">{stat.label}</span>
-              </motion.div>
-            ))}
-          </motion.div>
         </div>
       </motion.div>
 

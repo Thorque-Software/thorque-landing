@@ -13,7 +13,22 @@ import {
 } from "lucide-react"
 
 const icons = [Server, Link2, ShieldCheck, Cloud, Boxes, GitBranch]
-const techStack = ["Next.js", "Node.js", "Python", "PostgreSQL", "AWS", "Vercel", "Docker", "OpenAI", "TypeScript", "Redis", "GraphQL", "Kubernetes"]
+
+// `invertOnDark` for the marks that are solid black — inverting gives the official light variant
+const techStack = [
+  { name: "Next.js", logo: "/tecnologias/nextjs.png", invertOnDark: true },
+  { name: "Node.js", logo: "/tecnologias/node.png" },
+  { name: "Python", logo: "/tecnologias/python.png" },
+  { name: "TypeScript", logo: "/tecnologias/typescript.png" },
+  { name: "PostgreSQL", logo: "/tecnologias/postgres.png" },
+  { name: "Redis", logo: "/tecnologias/redis.png" },
+  { name: "GraphQL", logo: "/tecnologias/graphql.png" },
+  { name: "Docker", logo: "/tecnologias/docker.png" },
+  { name: "Kubernetes", logo: "/tecnologias/kubernetes.png" },
+  { name: "AWS", logo: "/tecnologias/aws.png" },
+  { name: "Vercel", logo: "/tecnologias/vercel.png", invertOnDark: true },
+  { name: "OpenAI", logo: "/tecnologias/openai.png", invertOnDark: true },
+]
 
 export function Architecture() {
   const { t, tArray } = useLanguage()
@@ -22,7 +37,7 @@ export function Architecture() {
   const headerInView = useInView(headerRef, { once: true, margin: "-100px" })
 
   return (
-    <section id="architecture" className="noise-overlay relative overflow-hidden py-28 md:py-40">
+    <section id="architecture" className="noise-overlay relative overflow-hidden py-16 md:py-24">
       {/* Dot grid background */}
       <div className="pointer-events-none absolute inset-0">
         <div
@@ -43,7 +58,7 @@ export function Architecture() {
           initial={{ opacity: 0, y: 40 }}
           animate={headerInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="mx-auto mb-20 max-w-3xl text-center"
+          className="mx-auto mb-14 max-w-3xl text-center"
         >
           <h2 className="mb-5 text-balance text-4xl font-bold tracking-tight text-foreground md:text-5xl lg:text-6xl">
             {t("architecture.title")}
@@ -70,7 +85,7 @@ export function Architecture() {
                   ease: [0.22, 1, 0.36, 1],
                 }}
                 whileHover={{ y: -4 }}
-                className={`glow-card group relative overflow-hidden rounded-2xl border border-border/50 bg-card/50 p-8 backdrop-blur-sm ${
+                className={`glow-card group relative overflow-hidden rounded-2xl border border-border/50 bg-card/50 p-8 ${
                   isLarge ? "md:col-span-2 lg:col-span-1" : ""
                 }`}
               >
@@ -105,16 +120,26 @@ export function Architecture() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className="mt-16 overflow-hidden rounded-2xl border border-border/30 bg-card/30 py-6 backdrop-blur-sm"
+          className="mt-16 overflow-hidden rounded-2xl border border-border/30 bg-card/30 py-6"
         >
-          <div className="flex animate-marquee whitespace-nowrap">
+          <div className="flex animate-marquee items-center whitespace-nowrap">
             {[...techStack, ...techStack].map((tech, i) => (
-              <span
-                key={i}
-                className="mx-8 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground/60 transition-colors hover:text-primary"
-              >
-                {tech}
-              </span>
+              <div key={i} className="group mx-8 flex shrink-0 items-center gap-3">
+                <img
+                  src={tech.logo}
+                  alt=""
+                  aria-hidden="true"
+                  loading="lazy"
+                  width={28}
+                  height={28}
+                  className={`h-7 w-7 object-contain opacity-70 transition-opacity duration-300 group-hover:opacity-100 ${
+                    tech.invertOnDark ? "dark:invert" : ""
+                  }`}
+                />
+                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground/60 transition-colors group-hover:text-primary">
+                  {tech.name}
+                </span>
+              </div>
             ))}
           </div>
         </motion.div>

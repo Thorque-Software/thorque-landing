@@ -15,11 +15,12 @@ export function Footer() {
   useEffect(() => { setMounted(true) }, [])
 
   const navLinks = [
-    { label: t("nav.services"), href: "#solutions" },
-    { label: t("nav.architecture"), href: "#architecture" },
-    { label: t("nav.process"), href: "#process" },
-    { label: t("nav.team"), href: "#team" },
-    { label: t("nav.contact"), href: "#contact" },
+    { label: t("nav.services"), href: "/#solutions" },
+    { label: t("nav.architecture"), href: "/#architecture" },
+    { label: t("nav.process"), href: "/#process" },
+    { label: t("nav.portfolio"), href: "/#portfolio" },
+    { label: t("nav.team"), href: "/#team" },
+    { label: t("nav.contact"), href: "/#contact" },
   ]
 
   return (

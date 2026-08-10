@@ -13,6 +13,9 @@ const nextConfig = {
     unoptimized: true,
   },
   output: 'export',
+  // emit out/portfolio/<slug>/index.html instead of out/portfolio/<slug>.html,
+  // so a plain static server resolves /portfolio/<slug> without rewrite rules
+  trailingSlash: true,
 }
 
 module.exports = nextConfig

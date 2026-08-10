@@ -7,6 +7,7 @@
     "services": "Servicios",
     "architecture": "Arquitectura",
     "process": "Proceso",
+    "portfolio": "Proyectos",
     "team": "Equipo",
     "contact": "Contacto"
   },
@@ -15,10 +16,7 @@
     "title": "Automatizamos la infraestructura digital de tu empresa",
     "subtitle": "Integraciones complejas, bots inteligentes, CRMs personalizados y APIs escalables. Diseñamos sistemas que potencian tu operación desde el día uno.",
     "cta_primary": "Solicitar diagnóstico",
-    "cta_secondary": "Agendar reunión",
-    "stat_integrations": "Integraciones implementadas",
-    "stat_processes": "Procesos automatizados",
-    "stat_companies": "Empresas asesoradas"
+    "cta_secondary": "Agendar reunión"
   },
   "problems": {
     "badge": "El problema",
@@ -139,6 +137,95 @@
         "description": "Monitoreo, análisis de métricas y mejoras constantes para maximizar el ROI de tu inversión."
       }
     ]
+  },
+  "portfolio": {
+    "badge": "Proyectos",
+    "title": "Lo que construimos",
+    "subtitle": "Sistemas en producción que hoy sostienen la operación diaria de nuestros clientes.",
+    "own_product": "Producto propio",
+    "view_project": "Ver proyecto",
+    "back": "Volver a proyectos",
+    "what_we_built": "Lo que construimos",
+    "next_project": "Siguiente proyecto:",
+    "services": {
+      "stock": "Gestión de stock",
+      "crm": "CRM",
+      "ecommerce": "Ecommerce",
+      "ai_agent": "Agente IA",
+      "ai": "IA",
+      "anses": "Extracción de datos ANSES",
+      "app": "App",
+      "alerts": "Sistema de alertas",
+      "leads": "Gestión y extracción de leads",
+      "properties": "Gestión de propiedades",
+      "portals": "Integración con portales inmobiliarios",
+      "internal_app": "App de gestión interna",
+      "field_staff": "Colaboradores de campo",
+      "management_system": "Sistema de gestión",
+      "integration": "Integración"
+    },
+    "challenge": "El desafío",
+    "solution": "La solución",
+    "result": "El resultado",
+    "projects": {
+      "agribusiness": {
+        "challenge": "El cliente necesitaba gestionar su operación con un equipo de colaboradores trabajando en el campo. El problema: no tenían forma de comunicarse con la central y toda la carga de datos se hacía a mano, en fichas de papel. Eso significaba demoras, información dispersa y trabajo duplicado.",
+        "solution": "Desarrollamos una app a medida y equipamos a cada colaborador con una tablet. Hoy cargan la información directamente desde el campo, de forma digital, y quedan comunicados con la central en todo momento.",
+        "tagline": "App a medida con tablets para que los colaboradores carguen datos desde el campo y queden comunicados con la central."
+      },
+      "arroyo-fitness": {
+        "challenge": "El ecommerce estaba desactualizado y ni siquiera aprovechaban sus funcionalidades: los precios estaban mal cargados, así que para comprar el cliente terminaba yendo al WhatsApp. Y ahí aparecía el segundo problema. El WhatsApp no tenía ningún control: el equipo se turnaba para responder, las consultas se perdían y no llegaban a resolver todo lo que entraba. A eso se sumaba la falta de control de stock.",
+        "solution": "Montamos un sistema de stock integrado a un nuevo ecommerce, con los pagos y las transferencias automatizados. Del lado de la atención, sumamos un CRM donde los vendedores se asignan y etiquetan a cada lead, con un agente de IA que hace el primer contacto antes de derivar la conversación.",
+        "result": "Una tienda que vuelve a vender sola y un equipo que ya no pierde consultas: stock bajo control, pagos automáticos y cada lead con su responsable.",
+        "tagline": "Stock integrado a un nuevo ecommerce, con pagos automatizados y un CRM con agente de IA para que no se pierda ninguna consulta."
+      },
+      "rba-residents": {
+        "challenge": "Rebora tenía sus propiedades publicadas en varios portales inmobiliarios a la vez, y los leads llegaban dispersos por todos lados: cada portal por su cuenta, más los que entraban por WhatsApp. Sin un lugar único donde centralizarlos, era fácil que una consulta se enfriara o que no quedara claro qué asesor tenía que responderla.",
+        "solution": "Armamos un sistema que extrae automáticamente los leads de todos los portales donde publican (Móvil 24, La Mudi, Casa y Terreno, Propiedades.com) y los vuelca en un CRM centralizado en Pipedrive. Desde ese mismo lugar también pueden publicar las propiedades en todos los portales de una sola vez, sin cargar cada uno por separado. Y sumamos un bot de WhatsApp que toma los leads que entran por ahí, los centraliza también en Pipedrive y los reparte entre los asesores con un sistema round robin.",
+        "result": "Todos los leads en un solo lugar y repartidos solos: publicación centralizada, nada que se pierda entre portales y cada consulta con su asesor asignado desde el minuto cero.",
+        "tagline": "Extracción automática de leads de cuatro portales inmobiliarios hacia un CRM único, con publicación centralizada y reparto entre asesores."
+      },
+      "ocularis": {
+        "challenge": "La clínica de ojos manejaba sus turnos desde el ERP, pero no tenía una forma automática de recordarle a cada paciente su cita. Sin recordatorios, aparecían las ausencias y los turnos que se perdían sin aviso, con la agenda quedando desactualizada.",
+        "solution": "Desarrollamos un sistema al que la clínica sube un Excel exportado desde su ERP. Con esos datos, el sistema envía automáticamente un recordatorio a cada paciente el día anterior a su turno, donde puede confirmar o cancelar. Cada respuesta se refleja al instante en el calendario del sistema, así el equipo ve el estado real de la agenda. Además permite cargar un Excel con recordatorios anuales para los controles que se repiten cada año.",
+        "result": "Menos ausencias y una agenda siempre al día: recordatorios automáticos, confirmaciones en tiempo real y los controles anuales cubiertos sin seguimiento manual.",
+        "tagline": "Recordatorios automáticos de turnos a partir del Excel del ERP, con confirmaciones que se reflejan al instante en la agenda."
+      },
+      "hopeslab": {
+        "challenge": "El mundo del deporte funciona con muchos actores que dependen unos de otros —deportistas, entrenadores, clubes, kinesiólogos, ligas, torneos, preparadores físicos, fotógrafos— pero conectarse entre sí seguía siendo algo disperso e informal, repartido entre contactos sueltos y redes que no están pensadas para ese ecosistema.",
+        "solution": "Desarrollamos HopesLab, una aplicación que reúne a toda la comunidad del deporte en un mismo espacio. Deportistas, entrenadores, clubes, kinesiólogos, ligas, torneos, preparadores físicos, fotógrafos y demás perfiles se encuentran, se relacionan y trabajan dentro de una misma red pensada para ellos.",
+        "result": "Todo el ecosistema deportivo conectado en un solo lugar: cada actor encuentra a los demás y las oportunidades dejan de perderse entre contactos sueltos.",
+        "tagline": "Una red que reúne a toda la comunidad del deporte —deportistas, clubes, entrenadores y más— en un mismo espacio."
+      },
+      "wade": {
+        "summary": "Wade es una plataforma para negocios argentinos que automatiza la carga y el control de facturas de compra. En vez de perseguir PDFs por chats y mails y copiar datos a mano, subís el comprobante por el canal que ya usás y Wade extrae con IA todos los campos (CUIT, CAE, fecha, ítems, totales), los valida fiscalmente y —si querés— los concilia automáticamente contra tus órdenes de compra o tu catálogo de productos. Todo queda centralizado, trazable y exportable a Google Sheets, Excel, Libro IVA o tu ERP.",
+        "tagline": "Carga y control de facturas de compra automatizados: extracción con IA, validación fiscal y conciliación contra órdenes de compra."
+      },
+      "credimundo": {
+        "challenge": "Cada consulta por un préstamo dependía de que alguien del equipo respondiera, armara la cotización a mano y le hiciera seguimiento. Con el volumen de consultas, eso significaba respuestas lentas, propuestas que tardaban en llegar y leads que se enfriaban antes de que un agente pudiera trabajarlos.",
+        "solution": "Desarrollamos un bot que cotiza automáticamente la propuesta de préstamo y se la envía al usuario por WhatsApp al instante. A partir de ahí sigue conversando con la persona y, según qué tan interesada esté, la va calificando. Cuando el lead está listo, queda cargado y ordenado en el CRM para que un agente entre solo a cerrar la operación.",
+        "result": "Respuesta inmediata y leads que llegan tibios al equipo: cotizaciones automáticas por WhatsApp, calificación sin intervención manual y agentes que dedican su tiempo a cerrar, no a filtrar.",
+        "tagline": "Bot que cotiza el préstamo y lo envía por WhatsApp al instante, califica al interesado y lo deja listo en el CRM para que el agente cierre."
+      },
+      "grid": {
+        "challenge": "Las redes sociales tradicionales conectan bien con contactos remotos, pero fallan justo en lo más cercano: encontrar y hablar con gente de tu propia zona, en el momento. Falta un espacio pensado para la comunidad local y la interacción inmediata, no para el algoritmo o los vínculos a distancia.",
+        "solution": "Desarrollamos una plataforma social orientada a conectar personas cercanas en tiempo real. Mediante geolocalización, los usuarios descubren perfiles en su zona, envían solicitudes de conexión y chatean al instante, individual o en grupo. Suma un feed social con publicaciones, comentarios y reacciones, perfiles con seguimiento y notificaciones, y un panel de administración para moderar usuarios, publicaciones y comentarios. Además, no conecta solo personas: también acerca a los usuarios a los negocios cercanos de su entorno.",
+        "result": "Una comunidad local viva y ordenada: la gente encuentra a otros y a los comercios de su zona, conversa en tiempo real y participa de un feed social, todo con moderación de por medio.",
+        "tagline": "Plataforma social que conecta por geolocalización a personas y comercios de la misma zona, con chat en tiempo real, feed y moderación."
+      }
+    },
+    "visit_site": "Visitar sitio",
+    "view_case": "Ver caso",
+    "services_short": {
+      "leads": "Extracción de leads",
+      "properties": "Propiedades",
+      "portals": "Portales inmobiliarios",
+      "internal_app": "Gestión interna",
+      "field_staff": "Personal de campo",
+      "alerts": "Alertas",
+      "stock": "Stock"
+    },
+    "visit_instagram": "Visitar Instagram"
   },
   "team": {
     "badge": "El equipo",
