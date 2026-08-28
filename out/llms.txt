@@ -1,0 +1,22 @@
+# Thorque Software
+
+> Empresa argentina de desarrollo de software a medida, automatización de procesos e integración de sistemas con inteligencia artificial. Base en Rosario, Santa Fe, Argentina. Trabaja de forma remota con clientes de todo el país y del exterior.
+
+## Servicios
+- Desarrollo de software a medida
+- Automatización de procesos empresariales
+- Integración de sistemas y APIs
+- Bots y agentes con inteligencia artificial (WhatsApp, Instagram, email)
+- Dashboards estratégicos
+- Arquitectura escalable en la nube
+
+## Stack
+Next.js, Node.js, Python, TypeScript, PostgreSQL, Redis, GraphQL, Docker, Kubernetes, AWS, Vercel, OpenAI
+
+## Contacto
+- Sitio: https://thorque.com.ar/
+- WhatsApp: +54 9 341 600-9423
+- Ubicación: Mendoza 1125, Rosario, Santa Fe, Argentina
+
+## Páginas
+- [Preguntas frecuentes](https://thorque.com.ar/preguntas-frecuentes): 59 preguntas sobre desarrollo de software a medida en Argentina — costos, plazos, propiedad del código, automatización con IA, integraciones y criterios para elegir proveedor.

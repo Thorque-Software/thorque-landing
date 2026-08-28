@@ -55,6 +55,60 @@ export const metadata: Metadata = {
   },
 }
 
+// Organization / ProfessionalService — grafo global del sitio.
+// Su @id (#organization) es referenciado por el FAQPage de /preguntas-frecuentes.
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': ['Organization', 'ProfessionalService'],
+  '@id': 'https://thorque.com.ar/#organization',
+  name: 'Thorque Software',
+  url: 'https://thorque.com.ar/',
+  description:
+    'Empresa argentina de desarrollo de software a medida, automatización de procesos, integración de sistemas y agentes con inteligencia artificial para empresas en crecimiento.',
+  slogan: 'Automatizamos la infraestructura digital de tu empresa',
+  areaServed: [
+    { '@type': 'Country', name: 'Argentina' },
+    { '@type': 'Place', name: 'LATAM' },
+  ],
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Mendoza 1125',
+    addressLocality: 'Rosario',
+    addressRegion: 'Santa Fe',
+    addressCountry: 'AR',
+  },
+  telephone: '+5493416009423',
+  email: 'contacto@thorque.com.ar',
+  knowsAbout: [
+    'Desarrollo de software a medida',
+    'Automatización de procesos empresariales',
+    'Integración de sistemas y APIs',
+    'Agentes de inteligencia artificial',
+    'Bots de WhatsApp con IA',
+    'Dashboards estratégicos',
+    'Next.js',
+    'Node.js',
+    'Python',
+    'TypeScript',
+    'PostgreSQL',
+    'AWS',
+    'Kubernetes',
+  ],
+  makesOffer: [
+    { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Desarrollo de software a medida' } },
+    { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Automatización de procesos' } },
+    { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Integración de sistemas y APIs' } },
+    { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Bots inteligentes con IA' } },
+    { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Dashboards estratégicos' } },
+    { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Arquitectura escalable en la nube' } },
+  ],
+  sameAs: [
+    'https://linkedin.com/company/thorque-software',
+    'https://www.instagram.com/thorque_software/',
+    'https://www.facebook.com/profile.php?id=61579726687034',
+  ],
+}
+
 export const viewport: Viewport = {
   themeColor: [
     { media: '(prefers-color-scheme: light)', color: '#FBAF3A' },
@@ -72,8 +126,12 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="es" suppressHydrationWarning>
       <body className="font-sans antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
         <Script id="fb-pixel" strategy="afterInteractive">
           {`!function(f,b,e,v,n,t,s)
           {if(f.fbq)return;n=f.fbq=function(){n.callMethod?

@@ -1,9 +1,10 @@
 "use client"
 
 import { useState, useRef } from "react"
+import Link from "next/link"
 import { motion, useInView } from "framer-motion"
 import { useLanguage } from "@/hooks/use-language"
-import { Send, Mail, Linkedin, ArrowUpRight, MessageSquare, Calendar, Facebook, Instagram } from "lucide-react"
+import { Send, Mail, Linkedin, ArrowUpRight, MessageSquare, Calendar, Facebook, Instagram, HelpCircle } from "lucide-react"
 
 export function Contact() {
   const { t } = useLanguage()
@@ -40,6 +41,14 @@ export function Contact() {
           <p className="text-pretty text-lg leading-relaxed text-muted-foreground">
             {t("contact.subtitle")}
           </p>
+          <Link
+            href="/preguntas-frecuentes"
+            className="group mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary transition-colors hover:text-foreground"
+          >
+            <HelpCircle className="h-4 w-4" />
+            {t("contact.faq_link")}
+            <ArrowUpRight className="h-3.5 w-3.5 opacity-70 transition-transform group-hover:-translate-y-px group-hover:translate-x-px" />
+          </Link>
         </motion.div>
 
         <div className="mx-auto grid max-w-5xl gap-8 lg:grid-cols-5">

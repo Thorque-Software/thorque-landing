@@ -21,6 +21,7 @@ export function Footer() {
     { label: t("nav.portfolio"), href: "/#portfolio" },
     { label: t("nav.team"), href: "/#team" },
     { label: t("nav.contact"), href: "/#contact" },
+    { label: t("nav.faq"), href: "/preguntas-frecuentes" },
   ]
 
   return (

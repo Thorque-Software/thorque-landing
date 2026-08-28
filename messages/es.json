@@ -9,7 +9,8 @@
     "process": "Proceso",
     "portfolio": "Proyectos",
     "team": "Equipo",
-    "contact": "Contacto"
+    "contact": "Contacto",
+    "faq": "Preguntas frecuentes"
   },
   "hero": {
     "badge": "Partner tecnológico para empresas",
@@ -242,6 +243,7 @@
     "badge": "Contacto",
     "title": "Hablemos de tu próximo proyecto",
     "subtitle": "Completá el formulario y nuestro equipo te contactará dentro de las próximas 24 horas hábiles.",
+    "faq_link": "Resolvé tus dudas antes de escribirnos",
     "form": {
       "name": "Nombre completo",
       "email": "Email corporativo",
@@ -265,7 +267,7 @@
     "rights": "Todos los derechos reservados.",
     "links_title": "Navegación",
     "contact_title": "Contacto",
-    "location": "Dr. Álvarez 1530, Rosario, Argentina",
+    "location": "Mendoza 1125, Rosario, Santa Fe, Argentina",
     "operational": "Sistemas operativos",
     "testimonial": "Thorque transformó toda nuestra operación digital. El tiempo de respuesta bajó de 48h a menos de 2h.",
     "testimonial_author": "CTO, Fintech LATAM"

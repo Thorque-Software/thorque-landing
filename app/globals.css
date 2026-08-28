@@ -472,3 +472,45 @@
     animation: none !important;
   }
 }
+
+/* ========================================
+   FAQ — /preguntas-frecuentes
+   Acordeón con <details>/<summary> nativos (sin JS).
+   El texto de las respuestas vive siempre en el DOM.
+   ======================================== */
+
+/* Ancho de lectura cómodo (~68ch) para el cuerpo de texto. */
+.faq-measure {
+  max-width: 68ch;
+}
+
+/* Oculta el marcador default del <details>. */
+.faq-summary {
+  list-style: none;
+}
+
+.faq-summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Indicador +/- propio, alineado a la derecha del summary. */
+.faq-summary::after {
+  content: '+';
+  flex: none;
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--primary);
+  transition: transform 0.2s ease;
+}
+
+.faq-item[open] > .faq-summary::after {
+  content: '\2013'; /* – en signo menos tipográfico */
+}
+
+/* Foco de teclado visible en el disparador del acordeón. */
+.faq-summary:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: var(--radius-md);
+}
